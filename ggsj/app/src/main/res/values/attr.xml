@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CountDown">
+        <!--默认提示语-->
+        <attr name="defTip" format="string"></attr>
+        <!--总计的倒计时时间以秒为单位-->
+        <attr name="totalTime" format="integer"></attr>
+        <!--正常情况下的背景-->
+        <attr name="normalBg" format="reference"></attr>
+        <!--倒计时的背景颜色-->
+        <attr name="countTimeBg" format="reference"></attr>
+    </declare-styleable>
+</resources>
