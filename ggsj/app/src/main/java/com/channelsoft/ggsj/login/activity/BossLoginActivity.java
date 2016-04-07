@@ -13,6 +13,7 @@ import android.view.View;
 import com.channelsoft.ggsj.R;
 import com.channelsoft.ggsj.base.activity.BaseActivity;
 import com.channelsoft.ggsj.databinding.ActivityBossLoginBinding;
+import com.channelsoft.ggsj.login.bean.CompanyData;
 import com.channelsoft.ggsj.login.broadcast.SmsBroadcast;
 import com.channelsoft.ggsj.login.viewmodel.GenerateCodeViewModel;
 import com.channelsoft.ggsj.login.viewmodel.LoginViewModel;
@@ -73,7 +74,7 @@ public class BossLoginActivity extends BaseActivity implements
         }
         else
         {
-            LogUtils.i(TAG," register broad cast ");
+            LogUtils.i(TAG, " register broad cast ");
             SmsBroadcast smsBroadcast = new SmsBroadcast();
             IntentFilter filter = new IntentFilter();
             filter.addAction("android.provider.Telephony.SMS_RECEIVED");
@@ -174,13 +175,13 @@ public class BossLoginActivity extends BaseActivity implements
     }
 
     @Override
-    public void onLoginSuccess()
+    public void onLoginSuccess(CompanyData info)
     {
-
+        startActivity(ChooseEntActivity.newIntent(BossLoginActivity.this,info));
     }
 
     @Override
-    public void onLoginError()
+    public void onLoginError(String errorMsg)
     {
 
     }

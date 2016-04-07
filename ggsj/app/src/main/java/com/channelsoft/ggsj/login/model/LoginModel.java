@@ -9,8 +9,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.channelsoft.ggsj.http.Http;
 import com.channelsoft.ggsj.http.Url;
+import com.channelsoft.ggsj.login.bean.CompanyData;
+import com.channelsoft.ggsj.login.bean.CompanyInfo;
 import com.channelsoft.ggsj.login.listener.OnLoginListener;
 import com.channelsoft.ggsj.utils.LogUtils;
+import com.channelsoft.ggsj.utils.LoginManager;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,10 +42,22 @@ public class LoginModel implements ILoginModel
                     public void onResponse(String s)
                     {
                         LogUtils.i(TAG, s);
-                        if(listener != null)
+                        Gson gson = new Gson();
+                        CompanyData info ;
+                        try
                         {
-                            listener.onLoginSuccess();
+                            info = gson.fromJson(s.toString(),CompanyData.class);
+                            LoginManager.saveToken(info.getData().getTokenId());
+                            if(listener != null)
+                            {
+                                listener.onLoginSuccess(info);
+                            }
                         }
+                        catch (Exception e)
+                        {
+                            LogUtils.i(TAG,"json exception :"+e.getMessage());
+                        }
+
                     }
                 },
                 new Response.ErrorListener()
@@ -51,7 +67,7 @@ public class LoginModel implements ILoginModel
                     {
                         if(listener != null)
                         {
-                            listener.onLoginError();
+                            listener.onLoginError(volleyError.getMessage());
                         }
                     }
                 })
