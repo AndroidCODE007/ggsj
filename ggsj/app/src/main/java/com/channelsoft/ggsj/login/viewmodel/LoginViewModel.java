@@ -1,5 +1,7 @@
 package com.channelsoft.ggsj.login.viewmodel;
 
+import com.channelsoft.ggsj.login.bean.CompanyData;
+import com.channelsoft.ggsj.login.bean.CompanyInfo;
 import com.channelsoft.ggsj.login.listener.OnLoginListener;
 import com.channelsoft.ggsj.login.model.LoginModel;
 
@@ -20,26 +22,37 @@ public class LoginViewModel implements ILoginViewModel , OnLoginListener
     {
         loginModel = new LoginModel(this);
         loginModel.login(phoneNumber,code);
+        if(listener != null)
+        {
+            listener.onLogining();
+        }
     }
 
     @Override
-    public void onLoginSuccess()
+    public void onLoginSuccess(CompanyData info)
     {
-
+        if(listener != null)
+        {
+            listener.onLoginSuccess(info);
+        }
     }
 
     @Override
-    public void onLoginError()
+    public void onLoginError(String errorMsg)
     {
-
+        if(listener != null)
+        {
+            listener.onLoginError(errorMsg);
+        }
     }
 
     public interface OnLoginView
     {
         void onLogining();
 
-        void onLoginSuccess();
+        void onLoginSuccess(CompanyData info);
 
-        void onLoginError();
+        void onLoginError(String errorMsg);
     }
 }
+

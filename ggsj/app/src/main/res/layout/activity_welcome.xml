@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <!--开机引导-->
+        <ViewStub
+            android:visibility="visible"
+            android:id="@+id/vsGuide"
+            android:layout_width="match_parent"
+            android:layout_height="190.0dp"
+            android:layout="@layout/include_guide">
+
+        </ViewStub>
+
+        <!--开机欢迎页面-->
+        <ViewStub
+            android:id="@+id/vsWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="190.0dp"
+            android:layout="@layout/include_welcome">
+
+        </ViewStub>
+    </FrameLayout>
+</layout>
