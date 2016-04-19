@@ -1,11 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <com.channelsoft.ggsj.order.Fragment.OrderFragment
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
-
-</LinearLayout>
+        android:fitsSystemWindows="true"
+        android:clipChildren="true">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentTop="true"
+            />
+        <android.support.v4.widget.DrawerLayout
+            android:id="@+id/main_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/main_toolbar"
+            >
+            <!-- DrawerLayout内部的布局只能有两部分，主布局在最上，策划栏区域在下面-->
+            <!-- 主布局 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/app_name"
+                    android:gravity="center"
+                    android:textSize="24sp"/>
+            </LinearLayout>
+            <!-- 侧滑栏布局 -->
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/color_white"
+                android:layout_gravity="start">
+                <TextView
+                    android:id="@+id/drawer_item1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="侧滑栏标题一"
+                    android:textSize="18sp"
+                    android:gravity="center" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#000000"/>
+                <TextView
+                    android:id="@+id/drawer_item2"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="侧滑栏标题二"
+                    android:textSize="18sp"
+                    android:gravity="center" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#000000"/>
+                <TextView
+                    android:id="@+id/drawer_item3"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="侧滑栏标题三"
+                    android:textSize="18sp"
+                    android:gravity="center" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#000000"/>
+                <TextView
+                    android:id="@+id/drawer_item4"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="侧滑栏标题四"
+                    android:textSize="18sp"
+                    android:gravity="center" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#000000"/>
+                <TextView
+                    android:id="@+id/drawer_item5"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="侧滑栏标题五"
+                    android:textSize="18sp"
+                    android:gravity="center" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#000000"/>
+            </LinearLayout>
+        </android.support.v4.widget.DrawerLayout>
+    </RelativeLayout>
+</layout>
