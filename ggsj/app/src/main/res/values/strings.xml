@@ -24,4 +24,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
+
+    <!--其他-->
+    <string name="load_more">加载更多...</string>
 </resources>
