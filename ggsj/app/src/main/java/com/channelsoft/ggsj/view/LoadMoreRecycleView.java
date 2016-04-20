@@ -18,6 +18,7 @@ public class LoadMoreRecycleView extends RecyclerView
     private int lastVisibleItem;
     private OnScrollChangedListener listener;
     private boolean isFullScreen = false;   //初始化数据是否充满屏幕。  true：可以加载更多   false :没有更多数据，不需要加载更多事件
+    private boolean isLoading = false;   //是否正在加载更多。
     private Context context;
 
     public LoadMoreRecycleView(Context context)
@@ -90,8 +91,9 @@ public class LoadMoreRecycleView extends RecyclerView
                     if (isFullScreen)
                     {
                         //加载数据
-                        if (listener != null)
+                        if (listener != null && !isLoading )
                         {
+                            isLoading = true;
                             listener.onLoading();
                         }
                     }
@@ -109,7 +111,8 @@ public class LoadMoreRecycleView extends RecyclerView
                 {
                     //不需要加载数据。j使空间不可见
                     LogUtils.i(TAG, "child  position ：" + (recyclerView.getAdapter().getItemCount() - 1));
-                    if((recyclerView.getAdapter().getItemCount()) == ((LinearLayoutManager) LoadMoreRecycleView.this.getLayoutManager()).findLastVisibleItemPosition() + 1)
+                    if((recyclerView.getAdapter().getItemCount()) ==
+                            ((LinearLayoutManager) LoadMoreRecycleView.this.getLayoutManager()).findLastVisibleItemPosition() + 1)
                     {
                         View view = recyclerView.getChildAt(recyclerView.getAdapter().getItemCount() - 1);
                         view.setVisibility(View.GONE);
@@ -117,5 +120,13 @@ public class LoadMoreRecycleView extends RecyclerView
                 }
             }
         });
+    }
+
+    /**
+     * 加载完成以后，设置isLoading为false
+     */
+    public void setIsLoading()
+    {
+        isLoading = false;
     }
 }

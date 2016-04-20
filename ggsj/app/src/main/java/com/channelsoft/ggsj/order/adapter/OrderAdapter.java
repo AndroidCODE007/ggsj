@@ -33,7 +33,7 @@ public class OrderAdapter extends RecyclerView.Adapter
     @Override
     public int getItemCount()
     {
-        return 4 + 1;
+        return 34 + 1;
     }
 
     @Override

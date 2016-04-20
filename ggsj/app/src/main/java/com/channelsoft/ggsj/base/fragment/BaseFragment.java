@@ -1,6 +1,7 @@
 package com.channelsoft.ggsj.base.fragment;
 
-import android.support.v4.app.Fragment;
+
+import android.app.Fragment;
 
 /**
  * Created by dengquan on 16-3-23.

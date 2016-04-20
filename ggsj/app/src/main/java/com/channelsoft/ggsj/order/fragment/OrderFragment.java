@@ -28,6 +28,12 @@ public class OrderFragment extends BaseFragment implements LoadMoreRecycleView.O
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_order,container,false);
+        initView();
+        return binding.getRoot();
+    }
+
+    private void initView()
+    {
         binding.swipeOrder.setColorSchemeColors(R.color.colorAccent,R.color.colorPrimary,R.color.colorPrimaryDark);
         binding.swipeOrder.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
@@ -45,9 +51,7 @@ public class OrderFragment extends BaseFragment implements LoadMoreRecycleView.O
         binding.recycleView.setAdapter(adapter);
         binding.recycleView.setLayoutManager(manager);
         binding.recycleView.setOnScrollChangedListener(this);
-        return binding.getRoot();
     }
-
     @Override
     public void onLoading()
     {
