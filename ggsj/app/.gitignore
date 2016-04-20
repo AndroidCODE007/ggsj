@@ -1,1 +1,11 @@
 /build
+/gradle
+/ggsj.iml
+/gradle.properties
+/gradlew
+/gradlew.bat
+/local.properties
+/settings.gradle
+/app/libs
+/app/build
+/app/app.iml
