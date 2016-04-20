@@ -10,11 +10,13 @@
             android:layout_height="60dp"
             android:layout_width="match_parent"
             android:background="@color/colorPrimary"
+            style="@style/BaseAppTheme"
             android:layout_alignParentTop="true"
             />
         <android.support.v4.widget.DrawerLayout
             android:id="@+id/main_drawer"
             android:layout_width="match_parent"
+            android:background="@color/color_white"
             android:layout_height="match_parent"
             android:layout_below="@id/main_toolbar"
             >
