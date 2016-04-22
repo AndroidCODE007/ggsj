@@ -63,7 +63,11 @@
             android:theme="@style/BaseAppTheme">
 
         </activity>
-        <!--引导页面-->
+        <!--更新的service-->
+        <service
+            android:name=".update.UpdateService">
+
+        </service>
     </application>
 
 </manifest>

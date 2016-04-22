@@ -23,7 +23,7 @@ public class OrderFragment extends BaseFragment implements LoadMoreRecycleView.O
 {
     private FragmentOrderBinding binding;
     private OrderAdapter adapter;
-    public MeasureLayoutManager manager;
+    public MeasureLayoutManager manager;View
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

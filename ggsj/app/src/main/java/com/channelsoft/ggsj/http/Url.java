@@ -1,5 +1,7 @@
 package com.channelsoft.ggsj.http;
 
+import com.channelsoft.ggsj.BuildConfig;
+
 /**
  * Created by dengquan on 16-3-23.
  */
@@ -37,6 +39,15 @@ public class Url
     public class Order
     {
 
+    }
+
+
+    /**
+     * 更新APP
+     */
+    public class Update
+    {
+        public static final String CHECKVERSION_ACTION = "/npsV2/apkversion/checkUpdate";            // 检查版本更新接口
     }
 
 }
