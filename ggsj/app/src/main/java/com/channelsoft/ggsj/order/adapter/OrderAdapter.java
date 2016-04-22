@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.channelsoft.ggsj.R;
+import com.channelsoft.ggsj.order.bean.OrderListInfo;
 import com.channelsoft.ggsj.view.MeasureLayoutManager;
 
 import java.util.ArrayList;
@@ -22,18 +23,18 @@ public class OrderAdapter extends RecyclerView.Adapter
     private static final int ORDER_DETAIL = 1;
     private static final int LOAD_MORE = 2;
     private Context context;
-    private List<String> list = new ArrayList<>();
-    public OrderAdapter(Context context)
+    private List<OrderListInfo> list = new ArrayList<>();
+    public OrderAdapter(Context context,List<OrderListInfo> list)
     {
         super();
         this.context = context;
-        initData();
+        this.list = list;
     }
 
     @Override
     public int getItemCount()
     {
-        return 34 + 1;
+        return list.size() + 1;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class OrderAdapter extends RecyclerView.Adapter
         if(holder instanceof OrderViewHolder)
         {
             OrderViewHolder holder1 = (OrderViewHolder)holder;
-            holder1.textView.setText(list.get(position) );
+            holder1.textView.setText(list.get(position).getPayPrice()+"元");
         }
         else if(holder instanceof FooterViewHolder)
         {
@@ -77,30 +78,18 @@ public class OrderAdapter extends RecyclerView.Adapter
         }
     }
 
-    public void addHeaderData()
+    public void addHeaderData(List<OrderListInfo> orderList)
     {
         Toast.makeText(context,"header data  ",Toast.LENGTH_LONG).show();
+        list = orderList;
+        this.notifyDataSetChanged();
     }
 
-    public void addFooterData()
+    public void addFooterData(List<OrderListInfo> orderList)
     {
         Toast.makeText(context,"footer data  ",Toast.LENGTH_LONG).show();
-    }
-
-    private void initData()
-    {
-        for (int i = 0;i<60;i++)
-        {
-            if(i % 2 == 0)
-            {
-                list.add("position"+"\n"+i);
-            }
-            else
-            {
-                list.add("position"+"\n\n"+i);
-            }
-
-        }
+        list = orderList;
+        this.notifyDataSetChanged();
     }
 
     class OrderViewHolder extends RecyclerView.ViewHolder

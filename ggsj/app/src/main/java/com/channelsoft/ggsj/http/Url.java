@@ -36,7 +36,7 @@ public class Url
      */
     public class Order
     {
-
+        public static final String GET_ORDERLIST = "/order/queryOrderListByGroupStatus.action";
     }
 
 }
