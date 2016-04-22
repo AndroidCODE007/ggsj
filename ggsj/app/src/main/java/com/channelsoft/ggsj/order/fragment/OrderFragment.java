@@ -41,6 +41,7 @@ public class OrderFragment extends BaseFragment implements LoadMoreRecycleView.O
 
     private boolean isLoadMoreOrRefresh = true;//下拉刷新为true，加载更多为false
 
+    private View rootView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class OrderFragment extends BaseFragment implements LoadMoreRecycleView.O
 
         initView();
 
-        return binding.getRoot();
+        return rootView = binding.getRoot();
     }
 
     private void bindViewModelAndInitData() {

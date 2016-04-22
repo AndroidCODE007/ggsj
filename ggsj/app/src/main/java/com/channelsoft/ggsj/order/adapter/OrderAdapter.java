@@ -56,7 +56,15 @@ public class OrderAdapter extends RecyclerView.Adapter
         if(holder instanceof OrderViewHolder)
         {
             OrderViewHolder holder1 = (OrderViewHolder)holder;
-            holder1.textView.setText(list.get(position).getPayPrice()+"元");
+            holder1.orderName.setText("顾客  "+list.get(position).getUserPhone());
+            holder1.dishCountAndPrice.setText(list.get(position).getDishList().size()+"道菜   ￥"+list.get(position).getSummaryPrice());
+            String dishnames = "";
+            for(int i = 0;i < list.get(position).getDishList().size(); i ++){
+                dishnames += list.get(position).getDishList().get(i).getDishName()+" ";
+            }
+            holder1.dishNames.setText(dishnames);
+            holder1.price.setText("顾客实付： ￥"+list.get(position).getPayPrice()+"    退款： ￥"+list.get(position).getReturnPrice());
+            holder1.backup.setText("备注："+list.get(position).getRemark());
         }
         else if(holder instanceof FooterViewHolder)
         {
@@ -94,11 +102,19 @@ public class OrderAdapter extends RecyclerView.Adapter
 
     class OrderViewHolder extends RecyclerView.ViewHolder
     {
-        private TextView textView;
+        private TextView orderName;
+        private TextView dishCountAndPrice;
+        private TextView dishNames;
+        private TextView price;
+        private TextView backup;
         public OrderViewHolder(View itemView)
         {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.orderName);
+            orderName = (TextView) itemView.findViewById(R.id.orderName);
+            dishCountAndPrice = (TextView) itemView.findViewById(R.id.dishCountAndPrice);
+            dishNames = (TextView) itemView.findViewById(R.id.dishNames);
+            price = (TextView) itemView.findViewById(R.id.price);
+            backup = (TextView) itemView.findViewById(R.id.backup);
         }
     }
 

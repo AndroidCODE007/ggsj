@@ -18,7 +18,7 @@
 // * Created by dengquan on 16-4-22.
 // */
 //public class DynamicViewGroup
-//{
+//{   
 //    private View mTargetView;
 //    private View.OnClickListener mClickListener;
 //    private Context mContext;
@@ -144,7 +144,6 @@
 //
 //    private void initializeAbsListView()
 //    {
-//
 //        setDefaultViews();
 //
 //        AbsListView abslistview = (AbsListView) mTargetView;
@@ -273,13 +272,10 @@
 //            if (buttonView != null)
 //                buttonView.setOnClickListener(this.mClickListener);
 //        }
-//
-//
 //    }
 //
 //    public void addCustomView(View customView, String tag)
 //    {
-//
 //        customView.setTag(tag);
 //        customView.setVisibility(View.GONE);
 //        mCustomViews.add(customView);
