@@ -9,13 +9,13 @@
         android:clipToPadding="true"
         android:fitsSystemWindows="true">
 
-        <com.channelsoft.ggsj.view.DynamicViewGroup
+        <com.channelsoft.android.ggsj.view.DynamicViewGroup
             android:id="@+id/dynamicView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
 
-        </com.channelsoft.ggsj.view.DynamicViewGroup>
+        </com.channelsoft.android.ggsj.view.DynamicViewGroup>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </layout>
