@@ -19,6 +19,7 @@ public class SharedPreferencesUtil
     private static final String VERSION_CODE = "version_code";
     private static final String VERSION_NAME = "version_name";
     private static final String PHONE_NUMBER = "phone_number";
+    private static final String ENT_ID = "ent_id";
     private SharedPreferencesUtil()
     {
 
@@ -86,4 +87,5 @@ public class SharedPreferencesUtil
         }
         return  sharedPreferences.getInt(VERSION_CODE,0);
     }
+
 }

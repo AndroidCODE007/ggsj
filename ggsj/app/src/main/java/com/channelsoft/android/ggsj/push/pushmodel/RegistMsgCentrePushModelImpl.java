@@ -19,9 +19,9 @@ public class RegistMsgCentrePushModelImpl implements IRegistMsgCentrePushModel,O
     IRegistMsgCentreModel model;
 
     @Override
-    public void registMsgCentre(String regId, String deviceOsVersion, String deviceModel, String appVersion, String phoneNumber) {
+    public void registMsgCentre(String regId, String deviceOsVersion, String deviceModel, String appVersion, String alias, String userAccount, String osType) {
         model =  new RegistMsgCentreModelImpl(this);
-        model.registMsgCentre(regId,deviceOsVersion,deviceModel,appVersion,phoneNumber);
+        model.registMsgCentre(regId,deviceOsVersion,deviceModel,appVersion,alias, userAccount,osType);
     }
 
     @Override

@@ -29,6 +29,9 @@ public class PushMsgReceiver extends PushMessageReceiver implements RegistMsgCen
     private String appVersion;
     private String regId;
     private String deviceModel;
+    private String alias;
+    private String userAccount;
+    private String osType;
 
     @Override
     public void onCommandResult(Context context, MiPushCommandMessage miPushCommandMessage) {
@@ -76,9 +79,17 @@ public class PushMsgReceiver extends PushMessageReceiver implements RegistMsgCen
                 deviceModel = Build.MODEL;
                 deviceOsVersion = Build.VERSION.RELEASE;
                 appVersion = VersionCodeUtil.getCurrentName();
+                alias = LoginManager.getDeviceId();
+//                userAccount =
+                osType = "1";
+
+                LogUtils.i(TAG,"regId = " + regId + "    deviceOsVersion = " + deviceOsVersion
+                                + "    deviceModel = " + deviceModel + "     appVersion = "
+                        + appVersion + "    alias = " + alias + "    userAccount = "+ userAccount
+                        + "    osType = " + osType);
 
                 model = new RegistMsgCentrePushModelImpl(this);
-                model.registMsgCentre(regId,deviceOsVersion,deviceModel,appVersion,phoneNumber);
+                model.registMsgCentre(regId,deviceOsVersion,deviceModel,appVersion,alias,userAccount,osType);
 
             }
         }else {

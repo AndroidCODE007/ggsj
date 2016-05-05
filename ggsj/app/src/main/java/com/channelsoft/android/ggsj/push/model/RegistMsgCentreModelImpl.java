@@ -30,7 +30,7 @@ public class RegistMsgCentreModelImpl implements IRegistMsgCentreModel {
     }
 
     @Override
-    public void registMsgCentre(final String regId, final String deviceOsVersion, final String deviceModel, final String appVersion, final String phoneNumber) {
+    public void registMsgCentre(final String regId, final String deviceOsVersion, final String deviceModel, final String appVersion, final String alias,final String userAccount,final String osType) {
         StringRequest request = new StringRequest(
                 StringRequest.Method.POST,
                 Url.RegistMsgCentre.REGIST_MSG_CENTRE,
@@ -70,7 +70,9 @@ public class RegistMsgCentreModelImpl implements IRegistMsgCentreModel {
                 map.put("deviceOsVersion", deviceOsVersion);
                 map.put("deviceModel", deviceModel);
                 map.put("appVersion", appVersion);
-                map.put("phoneNumber", phoneNumber);
+                map.put("alias",alias);
+                map.put("userAcount",userAccount);
+                map.put("osType",osType);
 
                 return map;
             }
