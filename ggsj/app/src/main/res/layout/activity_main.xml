@@ -23,7 +23,7 @@
             <!-- DrawerLayout内部的布局只能有两部分，主布局在最上，策划栏区域在下面-->
             <!-- 主布局 -->
             <fragment
-                android:name="com.channelsoft.ggsj.order.fragment.OrderFragment"
+                android:name="com.channelsoft.android.ggsj.order.fragment.OrderFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

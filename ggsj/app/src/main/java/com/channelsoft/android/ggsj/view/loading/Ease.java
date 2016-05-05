@@ -1,4 +1,4 @@
-package com.channelsoft.ggsj.view.loading;
+package com.channelsoft.android.ggsj.view.loading;
 
 import android.view.animation.Interpolator;
 

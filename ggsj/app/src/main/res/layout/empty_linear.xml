@@ -5,11 +5,11 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical">
 
-    <com.channelsoft.ggsj.view.exception.EmptyLinearLayout
+    <com.channelsoft.android.ggsj.view.exception.EmptyLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:EmptyBg = "@+id/ic_launcher"
         app:EmptyDescription = " empty data">
 
-    </com.channelsoft.ggsj.view.exception.EmptyLinearLayout>
+    </com.channelsoft.android.ggsj.view.exception.EmptyLinearLayout>
 </LinearLayout>
