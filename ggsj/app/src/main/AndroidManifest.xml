@@ -117,7 +117,11 @@
             </intent-filter>
         </receiver>
 
+        <!--更新的service-->
+        <service
+            android:name=".update.UpdateService">
 
+        </service>
     </application>
 
 </manifest>

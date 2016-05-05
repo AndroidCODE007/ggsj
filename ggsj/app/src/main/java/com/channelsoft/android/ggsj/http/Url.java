@@ -1,5 +1,7 @@
 package com.channelsoft.android.ggsj.http;
 
+import com.channelsoft.android.ggsj.BuildConfig;
+
 /**
  * Created by dengquan on 16-3-23.
  */
@@ -42,8 +44,16 @@ public class Url
     /**
      * 注册消息中心
      */
-    public class RegistMsgCentre{
+    public class RegistMsgCentre {
         public static final String REGIST_MSG_CENTRE = "http://test.qncloud.cn/channelpush/register.action";
+    }
+
+    /**
+     * 更新APP
+     */
+    public class Update
+    {
+        public static final String CHECKVERSION_ACTION = "/npsV2/apkversion/checkUpdate";            // 检查版本更新接口
     }
 
 }

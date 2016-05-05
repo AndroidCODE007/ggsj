@@ -13,17 +13,17 @@ public class ScreenUtils
 {
     private static final String TAG = ScreenUtils.class.getSimpleName();
 
-    public float getDensity()
+    public static  float getDensity()
     {
         return GlobalApplication.getInstance().getResources().getDisplayMetrics().density;
     }
 
-    public float getScreenHeight()
+    public static  float getScreenHeight()
     {
         return GlobalApplication.getInstance().getResources().getDisplayMetrics().heightPixels;
     }
 
-    public float getScreenWidth()
+    public static float getScreenWidth()
     {
         return GlobalApplication.getInstance().getResources().getDisplayMetrics().widthPixels;
     }
