@@ -5,10 +5,10 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical">
 
-    <com.channelsoft.ggsj.view.exception.SocketExceptionLinear
+    <com.channelsoft.android.ggsj.view.exception.SocketExceptionLinear
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:SocketExceptionBg = "@mipmap/ic_launcher"
         app:SocketExceptionDescription = "socket exception ">
-    </com.channelsoft.ggsj.view.exception.SocketExceptionLinear>
+    </com.channelsoft.android.ggsj.view.exception.SocketExceptionLinear>
 </LinearLayout>

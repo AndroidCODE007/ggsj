@@ -1,4 +1,4 @@
-package com.channelsoft.ggsj.view;
+package com.channelsoft.android.ggsj.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,9 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import com.channelsoft.ggsj.R;
-import com.channelsoft.ggsj.order.listener.OnDynamicClickListener;
-import com.channelsoft.ggsj.utils.LogUtils;
+
+import com.channelsoft.android.ggsj.R;
+import com.channelsoft.android.ggsj.order.listener.OnDynamicClickListener;
+import com.channelsoft.android.ggsj.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -192,7 +193,7 @@ public class DynamicViewGroup extends RelativeLayout implements OnDynamicClickLi
     }
 
     @Override
-    public void onDynamicClick(TypeClick type)
+    public void onDynamicClick(com.channelsoft.android.ggsj.order.listener.OnDynamicClickListener.TypeClick type)
     {
         switch (type)
         {

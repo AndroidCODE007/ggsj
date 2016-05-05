@@ -2,7 +2,7 @@
 <layout>
 
     <data>
-        <variable type="com.channelsoft.ggsj.order.bean.DishInfo" name="dishInfo"></variable>
+        <variable type="com.channelsoft.android.ggsj.order.bean.DishInfo" name="dishInfo"></variable>
 
     </data>
 

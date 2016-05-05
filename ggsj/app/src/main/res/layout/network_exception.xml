@@ -5,10 +5,10 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical">
 
-    <com.channelsoft.ggsj.view.exception.NetWorkExceptionLinear
+    <com.channelsoft.android.ggsj.view.exception.NetWorkExceptionLinear
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:NetWorkExceptionBg = "@+id/ic_launcher"
         app:NetWorkDescription = "net work exception">
-    </com.channelsoft.ggsj.view.exception.NetWorkExceptionLinear>
+    </com.channelsoft.android.ggsj.view.exception.NetWorkExceptionLinear>
 </LinearLayout>
