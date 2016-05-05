@@ -24,7 +24,41 @@ public class LoginManager
         return  SharedPreferencesUtil.getSharedPreferences().getToken();
     }
 
-    public static void savePhoneNumber(String phoneNumber){
+
+    public static void saveSessionId(String sessionId)
+    {
+        SharedPreferencesUtil.getSharedPreferences().saveSessionId(sessionId);
+    }
+
+    public static String getSessionId()
+    {
+        return  SharedPreferencesUtil.getSharedPreferences().getSessionId();
+    }
+
+
+    public static void saveEntId(String entId)
+    {
+        SharedPreferencesUtil.getSharedPreferences().saveEntId(entId);
+    }
+
+    public static String getEntId()
+    {
+        return  SharedPreferencesUtil.getSharedPreferences().getEntId();
+    }
+
+    public static void saveHelpDeskUrl(String helpDeskUrl)
+    {
+        SharedPreferencesUtil.getSharedPreferences().saveHelpDeskUrl(helpDeskUrl);
+    }
+
+    public static String getHelpDesjUrl()
+    {
+        return  SharedPreferencesUtil.getSharedPreferences().getHelpDeskUrl();
+
+    }
+
+    public static void savePhoneNumber(String phoneNumber)
+    {
         SharedPreferencesUtil.getSharedPreferences().savePhoneNumber(phoneNumber);
     }
 

@@ -1,11 +1,19 @@
 package com.channelsoft.android.ggsj.order.bean;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+import android.support.annotation.BinderThread;
+
+
+import com.channelsoft.android.ggsj.BR;
+
 import java.util.List;
 
 /**
  * Created by chenyg on 2016/4/21.
  */
-public class OrderListInfo {
+public class OrderListInfo
+{
     private String arrivedTime;
     private String cancelReason;
     private String note;
@@ -65,6 +73,7 @@ public class OrderListInfo {
     {
         return reduceOrderList;
     }
+
 
     public void setReduceOrderList(List<DishInfo> reduceOrderList)
     {

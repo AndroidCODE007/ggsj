@@ -7,8 +7,6 @@ import com.channelsoft.android.ggsj.base.bean.BaseInfo;
 import com.channelsoft.android.ggsj.login.listener.GetGenerateCodeListener;
 import com.channelsoft.android.ggsj.login.model.GenerateCodeModel;
 
-import java.util.regex.Matcher;
-
 /**
  * 获取验证码
  * Created by dengquan on 16-3-24.

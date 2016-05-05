@@ -1,30 +1,33 @@
-package com.channelsoft.ggsj.view.exception;
+package com.channelsoft.android.ggsj.view.exception;
 
-import android.content.ContentProvider;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.channelsoft.android.ggsj.R;
+import com.channelsoft.android.ggsj.order.listener.OnDynamicClickListener;
 import com.channelsoft.android.ggsj.utils.ScreenUtils;
 
 
 /**
  * Created by dengquan on 16-4-22.
  */
-public class EmptyLinearLayout extends LinearLayout
+public class EmptyLinearLayout extends LinearLayout implements BaseLinear
 {
     private ImageView bg;
     private TextView textView;
 
-    private LayoutParams params;
+    private RelativeLayout.LayoutParams params;
     private LayoutParams bgParams;
     private LayoutParams textParams;
+    public OnDynamicClickListener listener = null;
     private float density = ScreenUtils.getDensity();
     public EmptyLinearLayout(Context context)
     {
@@ -50,21 +53,22 @@ public class EmptyLinearLayout extends LinearLayout
      */
     private void initView(Context context)
     {
-        params = (LinearLayout.LayoutParams)this.getLayoutParams();
-        if(params == null)
+        params = (RelativeLayout.LayoutParams) this.getLayoutParams();
+        if (params == null)
         {
-            params = new LinearLayout.LayoutParams(context,null);
+            params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT);
         }
 
-
         bg = new ImageView(context);
-        bgParams = new LayoutParams(context,null);
+        this.addView(bg);
+        bgParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         textView = new TextView(context);
-        textParams = new LayoutParams(context,null);
-
-        this.addView(bg);
         this.addView(textView);
+        textParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+
         this.setGravity(Gravity.CENTER);
         this.setOrientation(VERTICAL);
 
@@ -111,6 +115,18 @@ public class EmptyLinearLayout extends LinearLayout
             }
             textView.setText(content);
         }
+        array.recycle();
+        textView.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(listener != null)
+                {
+                    listener.onDynamicClick(OnDynamicClickListener.TypeClick.emptyClick);
+                }
+            }
+        });
     }
 
     /**
@@ -124,4 +140,9 @@ public class EmptyLinearLayout extends LinearLayout
         textView.setText(content);
     }
 
+    @Override
+    public void setOnDynamicClickListener(OnDynamicClickListener listener)
+    {
+        this.listener = listener;
+    }
 }

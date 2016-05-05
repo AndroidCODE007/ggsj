@@ -11,6 +11,8 @@ import java.util.List;
 public class OrderListResult extends BaseInfo {
     private List<BlockInfo> block;
     private List<OrderListInfo> orderList;
+    private int page;
+    private int totalPage;
 
     public List<BlockInfo> getBlock()
     {
@@ -30,5 +32,25 @@ public class OrderListResult extends BaseInfo {
     public void setOrderList(List<OrderListInfo> orderList)
     {
         this.orderList = orderList;
+    }
+
+    public int getPage()
+    {
+        return page;
+    }
+
+    public void setPage(int page)
+    {
+        this.page = page;
+    }
+
+    public int getTotalPage()
+    {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage)
+    {
+        this.totalPage = totalPage;
     }
 }

@@ -102,6 +102,7 @@ public class OrderAdapter extends RecyclerView.Adapter
 
     class OrderViewHolder extends RecyclerView.ViewHolder
     {
+
         private TextView orderName;
         private TextView dishCountAndPrice;
         private TextView dishNames;

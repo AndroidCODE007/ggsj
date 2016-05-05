@@ -3,7 +3,8 @@ package com.channelsoft.android.ggsj.order.bean;
 /**
  * Created by chenyg on 2016/4/21.
  */
-public class DishInfo {
+public class DishInfo
+{
     private String dishName;
     private String dishPrice;
     private String dishGroupName;

@@ -7,7 +7,7 @@ import android.graphics.Rect;
 /**
  * Created by ybq.
  */
-public abstract class SpriteGroup extends Sprite {
+public abstract class SpriteGroup extends com.channelsoft.ggsj.view.loading.Sprite {
 
     private Sprite[] sprites;
 

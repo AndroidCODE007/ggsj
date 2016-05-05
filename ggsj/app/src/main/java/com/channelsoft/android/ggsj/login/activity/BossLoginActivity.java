@@ -18,6 +18,7 @@ import com.channelsoft.android.ggsj.login.bean.CompanyData;
 import com.channelsoft.android.ggsj.login.broadcast.SmsBroadcast;
 import com.channelsoft.android.ggsj.login.viewmodel.GenerateCodeViewModel;
 import com.channelsoft.android.ggsj.login.viewmodel.LoginViewModel;
+import com.channelsoft.android.ggsj.login.viewmodel.VerifyCodeViewModel;
 import com.channelsoft.android.ggsj.utils.LogUtils;
 import com.channelsoft.android.ggsj.utils.LoginManager;
 import com.channelsoft.android.ggsj.utils.PermissionManager;
@@ -34,12 +35,12 @@ import java.util.List;
  */
 public class BossLoginActivity extends BaseActivity implements
         View.OnClickListener,CountDownBtn.GetGenerateCodeListener,GenerateCodeViewModel.IGenerateCodeView,
-        LoginViewModel.OnLoginView
+        com.channelsoft.android.ggsj.login.viewmodel.VerifyCodeViewModel.OnLoginView
 {
     private static final String TAG = BossLoginActivity.class.getSimpleName();
     private ActivityBossLoginBinding binding ;
     private GenerateCodeViewModel generateCodeViewModel;
-    private LoginViewModel loginViewModel;
+    private VerifyCodeViewModel loginViewModel;
     private static final int REQUEST_CODE_SOME_FEATURES_PERMISSIONS = 101;
 
     private String phoneNumber;
@@ -107,7 +108,7 @@ public class BossLoginActivity extends BaseActivity implements
     private void bindViewModel()
     {
         generateCodeViewModel = new GenerateCodeViewModel();
-        loginViewModel = new LoginViewModel(this);
+        loginViewModel = new VerifyCodeViewModel(this);
         binding.bntLogin.setOnClickListener(this);
         binding.btnGenerateCode.setActivity(this);
         binding.btnGenerateCode.setGenerateCodeListener(this);

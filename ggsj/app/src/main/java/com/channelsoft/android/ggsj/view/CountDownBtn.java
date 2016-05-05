@@ -9,6 +9,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 import com.channelsoft.android.ggsj.R;
 import com.channelsoft.android.ggsj.utils.LogUtils;
 
@@ -21,6 +23,7 @@ import java.util.TimerTask;
  */
 public class CountDownBtn extends Button implements View.OnClickListener
 {
+    ArrayList list;
     private static final String TAG = CountDownBtn.class.getSimpleName();
     private String TIP;
     private Integer TOTALTIME;

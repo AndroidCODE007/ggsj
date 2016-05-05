@@ -1,9 +1,10 @@
 package com.channelsoft.android.ggsj.login.model;
 
 /**
- * Created by dengquan on 16-3-28.
+ * l登陆
+ * Created by dengquan on 16-5-3.
  */
 public interface ILoginModel
 {
-    void login(String phoneNumber, String code);
+    void login(String entId);
 }

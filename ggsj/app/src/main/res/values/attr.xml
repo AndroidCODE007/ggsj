@@ -10,4 +10,55 @@
         <!--倒计时的背景颜色-->
         <attr name="countTimeBg" format="reference"></attr>
     </declare-styleable>
+
+    <!--网络异常-->
+    <declare-styleable name="NetWorkException">
+        <attr name="NetWorkExceptionBg" format="reference"></attr>
+        <attr name="NetWorkDescription" format="string"></attr>
+    </declare-styleable>
+
+
+    <!--socket异常-->
+    <declare-styleable name="SocketException">
+        <attr name="SocketExceptionBg" format="reference"></attr>
+        <attr name="SocketExceptionDescription" format="string"></attr>
+    </declare-styleable>
+
+
+    <!--空数据-->
+    <declare-styleable name="EmptyLinear">
+        <attr name="EmptyBg" format="reference"></attr>
+        <attr name="EmptyDescription" format="string"></attr>
+    </declare-styleable>
+
+    <!--DynamicView-->
+    <declare-styleable name="DynamicViewGroup">
+        <attr name="loading" format="reference"></attr>
+        <attr name="socketException" format="reference"></attr>
+        <attr name="netWorkException" format="reference"></attr>
+        <attr name="empty" format="reference"></attr>
+        <attr name="fullData" format="reference"></attr>
+
+    </declare-styleable>
+
+
+    <attr name="SpinKitViewStyle" format="reference" />
+
+    <declare-styleable name="SpinKitView">
+        <attr name="SpinKit_Style">
+            <enum name="RotatingPlane" value="0" />
+            <enum name="DoubleBounce" value="1" />
+            <enum name="Wave" value="2" />
+            <enum name="WanderingCubes" value="3" />
+            <enum name="Pulse" value="4" />
+            <enum name="ChasingDots" value="5" />
+            <enum name="ThreeBounce" value="6" />
+            <enum name="Circle" value="7" />
+            <enum name="CubeGrid" value="8" />
+            <enum name="FadingCircle" value="9" />
+            <enum name="FoldingCube" value="10" />
+        </attr>
+        <attr name="SpinKit_Color" format="color" />
+    </declare-styleable>
+
 </resources>

@@ -44,7 +44,7 @@ public class ChooseEntAdapter extends RecyclerView.Adapter
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position)
     {
         CompanyDetailInfo info = data.getData().getCompanyInfo().get(position);
         ((EntViewHolder) holder).getBinding().setVariable(BR.entInfo, info);
@@ -56,7 +56,7 @@ public class ChooseEntAdapter extends RecyclerView.Adapter
             {
                 if(listener != null)
                 {
-                    listener.onClick();
+                    listener.onClick(position);
                 }
             }
         });
@@ -98,6 +98,6 @@ public class ChooseEntAdapter extends RecyclerView.Adapter
 
     public interface OnItemClickListener
     {
-        void onClick();
+        void onClick(int position);
     }
 }
