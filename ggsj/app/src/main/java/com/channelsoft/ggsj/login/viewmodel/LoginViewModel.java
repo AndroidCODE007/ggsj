@@ -1,58 +1,54 @@
 package com.channelsoft.ggsj.login.viewmodel;
 
-import com.channelsoft.ggsj.login.bean.CompanyData;
-import com.channelsoft.ggsj.login.bean.CompanyInfo;
-import com.channelsoft.ggsj.login.listener.OnLoginListener;
+import com.channelsoft.ggsj.login.model.ILoginModel;
 import com.channelsoft.ggsj.login.model.LoginModel;
 
 /**
- * 登录
- * Created by dengquan on 16-3-28.
+ * Created by dengquan on 16-5-3.
  */
-public class LoginViewModel implements ILoginViewModel , OnLoginListener
+public class LoginViewModel implements ILoginViewModel
 {
-    private OnLoginView listener;
-    private LoginModel loginModel;
-    public LoginViewModel(OnLoginView listener)
+    private ILoginModel model;
+    private ChooseEntActivityView view;
+    public LoginViewModel(ChooseEntActivityView view)
     {
-        this.listener = listener;
+        this.view = view;
+        model = new LoginModel(this);
     }
     @Override
-    public void login(String phoneNumber,String code)
+    public void login(String entId)
     {
-        loginModel = new LoginModel(this);
-        loginModel.login(phoneNumber,code);
-        if(listener != null)
+        if(view != null)
         {
-            listener.onLogining();
+            view.onLogining();
+        }
+        model.login(entId);
+    }
+
+    @Override
+    public void onSuccess()
+    {
+        if(view != null)
+        {
+            view.onSuccess();
         }
     }
 
     @Override
-    public void onLoginSuccess(CompanyData info)
+    public void onError()
     {
-        if(listener != null)
+        if(view != null)
         {
-            listener.onLoginSuccess(info);
+            view.onError(null);
         }
     }
 
-    @Override
-    public void onLoginError(String errorMsg)
-    {
-        if(listener != null)
-        {
-            listener.onLoginError(errorMsg);
-        }
-    }
-
-    public interface OnLoginView
+    public interface ChooseEntActivityView
     {
         void onLogining();
 
-        void onLoginSuccess(CompanyData info);
+        void onSuccess();
 
-        void onLoginError(String errorMsg);
+        void onError(String returnCode);
     }
 }
-

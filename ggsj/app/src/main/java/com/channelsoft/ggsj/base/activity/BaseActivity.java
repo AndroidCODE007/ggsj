@@ -7,6 +7,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * Created by dengquan on 16-3-23.
  */
@@ -38,5 +44,22 @@ public class BaseActivity extends AppCompatActivity
     private void hasNetWork()
     {
         return;
+    }
+
+
+    public  class Student
+    {
+        @Override
+        public boolean equals(Object o)
+        {
+            return super.equals(o);
+        }
+
+
+        @Override
+        public int hashCode()
+        {
+            return super.hashCode();
+        }
     }
 }

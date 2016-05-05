@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
 
+    <com.channelsoft.ggsj.view.exception.EmptyLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:EmptyBg = "@+id/ic_launcher"
+        app:EmptyDescription = " empty data">
+
+    </com.channelsoft.ggsj.view.exception.EmptyLinearLayout>
 </LinearLayout>

@@ -1,11 +1,18 @@
 package com.channelsoft.ggsj.order.bean;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+import android.support.annotation.BinderThread;
+
+import com.channelsoft.ggsj.BR;
+
 import java.util.List;
 
 /**
  * Created by chenyg on 2016/4/21.
  */
-public class OrderListInfo {
+public class OrderListInfo extends BaseObservable
+{
     private String arrivedTime;
     private String cancelReason;
     private String note;
@@ -41,6 +48,7 @@ public class OrderListInfo {
     private String summaryPrice;
     private String summaryPriceByFen;
 
+    @Bindable
     public List<DishInfo> getDishList()
     {
         return dishList;
@@ -49,8 +57,10 @@ public class OrderListInfo {
     public void setDishList(List<DishInfo> dishList)
     {
         this.dishList = dishList;
+        notifyPropertyChanged(BR.dishList);
     }
 
+    @Bindable
     public List<DishInfo> getSubOrderList()
     {
         return subOrderList;
@@ -59,18 +69,23 @@ public class OrderListInfo {
     public void setSubOrderList(List<DishInfo> subOrderList)
     {
         this.subOrderList = subOrderList;
+        notifyPropertyChanged(BR.subOrderList);
     }
 
+    @Bindable
     public List<DishInfo> getReduceOrderList()
     {
         return reduceOrderList;
     }
 
+
     public void setReduceOrderList(List<DishInfo> reduceOrderList)
     {
         this.reduceOrderList = reduceOrderList;
+        notifyPropertyChanged(BR.reduceOrderList);
     }
 
+    @Bindable
     public String getReduceDishTotalPrice()
     {
         return reduceDishTotalPrice;

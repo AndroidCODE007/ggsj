@@ -31,6 +31,19 @@ public class Url
          * 咕咕商家登录SDM校验验证码
          */
         public static final String VERIFY_CODE = "/sdm/vcode/verifyCode.action";
+
+
+        /**
+         *重新登陆的接口。
+         */
+        public static final String RE_LOGIN = "/ggsj/login.action";
+
+
+        /**
+         * 选择完商户之后的登陆
+         */
+        public static final String BOSS_LOGIN_HELPDESK = "/ggsj/login.action";
+
     }
 
     /**

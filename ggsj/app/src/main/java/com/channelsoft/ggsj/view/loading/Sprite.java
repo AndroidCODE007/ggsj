@@ -17,7 +17,8 @@ import android.util.Property;
 public abstract class Sprite extends Drawable implements
         ValueAnimator.AnimatorUpdateListener
         , Animatable
-        , Drawable.Callback {
+        , Drawable.Callback
+{
 
     private float scale = 1;
     private float scaleX = 1;
@@ -39,7 +40,8 @@ public abstract class Sprite extends Drawable implements
     private Camera mCamera;
     private Matrix mMatrix;
 
-    public Sprite() {
+    public Sprite()
+    {
         mCamera = new Camera();
         mMatrix = new Matrix();
     }
@@ -49,143 +51,176 @@ public abstract class Sprite extends Drawable implements
     public abstract void setColor(int color);
 
     @Override
-    public void setAlpha(int alpha) {
+    public void setAlpha(int alpha)
+    {
         this.alpha = alpha;
     }
 
     @Override
-    public int getAlpha() {
+    public int getAlpha()
+    {
         return alpha;
     }
 
     @Override
-    public int getOpacity() {
+    public int getOpacity()
+    {
         return PixelFormat.RGBA_8888;
     }
 
-    public float getTranslateXPercentage() {
+    public float getTranslateXPercentage()
+    {
         return translateXPercentage;
     }
 
-    public void setTranslateXPercentage(float translateXPercentage) {
+    public void setTranslateXPercentage(float translateXPercentage)
+    {
         this.translateXPercentage = translateXPercentage;
     }
 
-    public float getTranslateYPercentage() {
+    public float getTranslateYPercentage()
+    {
         return translateYPercentage;
     }
 
-    public void setTranslateYPercentage(float translateYPercentage) {
+    public void setTranslateYPercentage(float translateYPercentage)
+    {
         this.translateYPercentage = translateYPercentage;
     }
 
-    public int getTranslateX() {
+    public int getTranslateX()
+    {
         return translateX;
     }
 
-    public void setTranslateX(int translateX) {
+    public void setTranslateX(int translateX)
+    {
         this.translateX = translateX;
     }
 
-    public int getTranslateY() {
+    public int getTranslateY()
+    {
         return translateY;
     }
 
-    public void setTranslateY(int translateY) {
+    public void setTranslateY(int translateY)
+    {
         this.translateY = translateY;
     }
 
-    public int getRotate() {
+    public int getRotate()
+    {
         return rotate;
     }
 
-    public void setRotate(int rotate) {
+    public void setRotate(int rotate)
+    {
         this.rotate = rotate;
     }
 
-    public float getScale() {
+    public float getScale()
+    {
         return scale;
     }
 
-    public void setScale(float scale) {
+    public void setScale(float scale)
+    {
         this.scale = scale;
         setScaleX(scale);
         setScaleY(scale);
     }
 
-    public float getScaleX() {
+    public float getScaleX()
+    {
         return scaleX;
     }
 
-    public void setScaleX(float scaleX) {
+    public void setScaleX(float scaleX)
+    {
         this.scaleX = scaleX;
     }
 
-    public float getScaleY() {
+    public float getScaleY()
+    {
         return scaleY;
     }
 
-    public void setScaleY(float scaleY) {
+    public void setScaleY(float scaleY)
+    {
         this.scaleY = scaleY;
     }
 
-    public int getRotateX() {
+    public int getRotateX()
+    {
         return rotateX;
     }
 
-    public void setRotateX(int rotateX) {
+    public void setRotateX(int rotateX)
+    {
         this.rotateX = rotateX;
     }
 
-    public int getRotateY() {
+    public int getRotateY()
+    {
         return rotateY;
     }
 
-    public void setRotateY(int rotateY) {
+    public void setRotateY(int rotateY)
+    {
         this.rotateY = rotateY;
     }
 
-    public float getPivotX() {
+    public float getPivotX()
+    {
         return pivotX;
     }
 
-    public void setPivotX(float pivotX) {
+    public void setPivotX(float pivotX)
+    {
         this.pivotX = pivotX;
     }
 
-    public float getPivotY() {
+    public float getPivotY()
+    {
         return pivotY;
     }
 
-    public void setPivotY(float pivotY) {
+    public void setPivotY(float pivotY)
+    {
         this.pivotY = pivotY;
     }
 
     @SuppressWarnings("unused")
-    public int getAnimationDelay() {
+    public int getAnimationDelay()
+    {
         return animationDelay;
     }
 
-    public Sprite setAnimationDelay(int animationDelay) {
+    public Sprite setAnimationDelay(int animationDelay)
+    {
         this.animationDelay = animationDelay;
         return this;
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter)
+    {
 
     }
 
     public abstract ValueAnimator getAnimation();
 
     @Override
-    public void start() {
-        if (AnimationUtils.isStarted(animator)) {
+    public void start()
+    {
+        if (AnimationUtils.isStarted(animator))
+        {
             return;
         }
 
         animator = obtainAnimation();
-        if (animator == null) {
+        if (animator == null)
+        {
             return;
         }
 
@@ -193,11 +228,14 @@ public abstract class Sprite extends Drawable implements
         invalidateSelf();
     }
 
-    public ValueAnimator obtainAnimation() {
-        if (animator == null) {
+    public ValueAnimator obtainAnimation()
+    {
+        if (animator == null)
+        {
             animator = getAnimation();
         }
-        if (animator != null) {
+        if (animator != null)
+        {
             animator.addUpdateListener(this);
             animator.setStartDelay(animationDelay);
         }
@@ -205,8 +243,10 @@ public abstract class Sprite extends Drawable implements
     }
 
     @Override
-    public void stop() {
-        if (AnimationUtils.isStarted(animator)) {
+    public void stop()
+    {
+        if (AnimationUtils.isStarted(animator))
+        {
             animator.removeAllUpdateListeners();
             animator.end();
             reset();
@@ -215,7 +255,8 @@ public abstract class Sprite extends Drawable implements
 
     protected abstract void drawSelf(Canvas canvas);
 
-    public void reset() {
+    public void reset()
+    {
         scale = 1;
         rotateX = 0;
         rotateY = 0;
@@ -227,55 +268,66 @@ public abstract class Sprite extends Drawable implements
     }
 
     @Override
-    public boolean isRunning() {
+    public boolean isRunning()
+    {
         return AnimationUtils.isRunning(animator);
     }
 
     @Override
-    protected void onBoundsChange(Rect bounds) {
+    protected void onBoundsChange(Rect bounds)
+    {
         super.onBoundsChange(bounds);
         setDrawBounds(bounds);
     }
 
-    public void setDrawBounds(Rect drawBounds) {
+    public void setDrawBounds(Rect drawBounds)
+    {
         setDrawBounds(drawBounds.left, drawBounds.top, drawBounds.right, drawBounds.bottom);
     }
 
-    public void setDrawBounds(int left, int top, int right, int bottom) {
+    public void setDrawBounds(int left, int top, int right, int bottom)
+    {
         this.drawBounds = new Rect(left, top, right, bottom);
         setPivotX(getDrawBounds().centerX());
         setPivotY(getDrawBounds().centerY());
     }
 
     @Override
-    public void invalidateDrawable(Drawable who) {
+    public void invalidateDrawable(Drawable who)
+    {
         invalidateSelf();
     }
 
     @Override
-    public void scheduleDrawable(Drawable who, Runnable what, long when) {
+    public void scheduleDrawable(Drawable who, Runnable what, long when)
+    {
 
     }
 
     @Override
-    public void unscheduleDrawable(Drawable who, Runnable what) {
+    public void unscheduleDrawable(Drawable who, Runnable what)
+    {
 
     }
 
     @Override
-    public void onAnimationUpdate(ValueAnimator animation) {
+    public void onAnimationUpdate(ValueAnimator animation)
+    {
         final Callback callback = getCallback();
-        if (callback != null) {
+        if (callback != null)
+        {
             callback.invalidateDrawable(this);
         }
     }
 
-    public Rect getDrawBounds() {
+    public Rect getDrawBounds()
+    {
         return drawBounds;
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas)
+    {
         int tx = getTranslateX();
         tx = tx == 0 ? (int) (getBounds().width() * getTranslateXPercentage()) : tx;
         int ty = getTranslateY();
@@ -284,7 +336,8 @@ public abstract class Sprite extends Drawable implements
         canvas.scale(getScaleX(), getScaleY(), getPivotX(), getPivotY());
         canvas.rotate(getRotate(), getPivotX(), getPivotY());
 
-        if (getRotateX() != 0 || getRotateY() != 0) {
+        if (getRotateX() != 0 || getRotateY() != 0)
+        {
             mCamera.save();
             mCamera.rotateX(getRotateX());
             mCamera.rotateY(getRotateY());
@@ -297,7 +350,8 @@ public abstract class Sprite extends Drawable implements
         drawSelf(canvas);
     }
 
-    public Rect clipSquare(Rect rect) {
+    public Rect clipSquare(Rect rect)
+    {
         int w = rect.width();
         int h = rect.height();
         int min = Math.min(w, h);
@@ -312,137 +366,170 @@ public abstract class Sprite extends Drawable implements
         );
     }
 
-    public static final Property<Sprite, Integer> ROTATE_X = new IntProperty<Sprite>("rotateX") {
+    public static final Property<Sprite, Integer> ROTATE_X = new IntProperty<Sprite>("rotateX")
+    {
         @Override
-        public void setValue(Sprite object, int value) {
+        public void setValue(Sprite object, int value)
+        {
             object.setRotateX(value);
         }
 
         @Override
-        public Integer get(Sprite object) {
+        public Integer get(Sprite object)
+        {
             return object.getRotateX();
         }
     };
 
-    public static final Property<Sprite, Integer> ROTATE = new IntProperty<Sprite>("rotate") {
+    public static final Property<Sprite, Integer> ROTATE = new IntProperty<Sprite>("rotate")
+    {
         @Override
-        public void setValue(Sprite object, int value) {
+        public void setValue(Sprite object, int value)
+        {
             object.setRotate(value);
         }
 
         @Override
-        public Integer get(Sprite object) {
+        public Integer get(Sprite object)
+        {
             return object.getRotate();
         }
     };
 
-    public static final Property<Sprite, Integer> ROTATE_Y = new IntProperty<Sprite>("rotateY") {
+    public static final Property<Sprite, Integer> ROTATE_Y = new IntProperty<Sprite>("rotateY")
+    {
         @Override
-        public void setValue(Sprite object, int value) {
+        public void setValue(Sprite object, int value)
+        {
             object.setRotateY(value);
         }
 
         @Override
-        public Integer get(Sprite object) {
+        public Integer get(Sprite object)
+        {
             return object.getRotateY();
         }
     };
 
     @SuppressWarnings("unused")
-    public static final Property<Sprite, Integer> TRANSLATE_X = new IntProperty<Sprite>("translateX") {
+    public static final Property<Sprite, Integer> TRANSLATE_X = new IntProperty<Sprite>("translateX")
+    {
         @Override
-        public void setValue(Sprite object, int value) {
+        public void setValue(Sprite object, int value)
+        {
             object.setTranslateX(value);
         }
 
         @Override
-        public Integer get(Sprite object) {
+        public Integer get(Sprite object)
+        {
             return object.getTranslateX();
         }
     };
 
     @SuppressWarnings("unused")
-    public static final Property<Sprite, Integer> TRANSLATE_Y = new IntProperty<Sprite>("translateY") {
+    public static final Property<Sprite, Integer> TRANSLATE_Y = new IntProperty<Sprite>("translateY")
+    {
         @Override
-        public void setValue(Sprite object, int value) {
+        public void setValue(Sprite object, int value)
+        {
             object.setTranslateY(value);
         }
 
         @Override
-        public Integer get(Sprite object) {
+        public Integer get(Sprite object)
+        {
             return object.getTranslateY();
         }
     };
 
-    public static final Property<Sprite, Float> TRANSLATE_X_PERCENTAGE = new FloatProperty<Sprite>("translateXPercentage") {
+    public static final Property<Sprite, Float> TRANSLATE_X_PERCENTAGE = new FloatProperty<Sprite>("translateXPercentage")
+    {
         @Override
-        public void setValue(Sprite object, float value) {
+        public void setValue(Sprite object, float value)
+        {
             object.setTranslateXPercentage(value);
         }
 
         @Override
-        public Float get(Sprite object) {
+        public Float get(Sprite object)
+        {
             return object.getTranslateXPercentage();
         }
     };
 
-    public static final Property<Sprite, Float> TRANSLATE_Y_PERCENTAGE = new FloatProperty<Sprite>("translateYPercentage") {
+    public static final Property<Sprite, Float> TRANSLATE_Y_PERCENTAGE = new FloatProperty<Sprite>("translateYPercentage")
+    {
         @Override
-        public void setValue(Sprite object, float value) {
+        public void setValue(Sprite object, float value)
+        {
             object.setTranslateYPercentage(value);
         }
 
         @Override
-        public Float get(Sprite object) {
+        public Float get(Sprite object)
+        {
             return object.getTranslateYPercentage();
         }
     };
 
     @SuppressWarnings("unused")
-    public static final Property<Sprite, Float> SCALE_X = new FloatProperty<Sprite>("scaleX") {
+    public static final Property<Sprite, Float> SCALE_X = new FloatProperty<Sprite>("scaleX")
+    {
         @Override
-        public void setValue(Sprite object, float value) {
+        public void setValue(Sprite object, float value)
+        {
             object.setScaleX(value);
         }
 
         @Override
-        public Float get(Sprite object) {
+        public Float get(Sprite object)
+        {
             return object.getScaleX();
         }
     };
 
-    public static final Property<Sprite, Float> SCALE_Y = new FloatProperty<Sprite>("scaleY") {
+    public static final Property<Sprite, Float> SCALE_Y = new FloatProperty<Sprite>("scaleY")
+    {
         @Override
-        public void setValue(Sprite object, float value) {
+        public void setValue(Sprite object, float value)
+        {
             object.setScaleY(value);
         }
 
         @Override
-        public Float get(Sprite object) {
+        public Float get(Sprite object)
+        {
             return object.getScaleY();
         }
     };
 
-    public static final Property<Sprite, Float> SCALE = new FloatProperty<Sprite>("scale") {
+    public static final Property<Sprite, Float> SCALE = new FloatProperty<Sprite>("scale")
+    {
         @Override
-        public void setValue(Sprite object, float value) {
+        public void setValue(Sprite object, float value)
+        {
             object.setScale(value);
         }
 
         @Override
-        public Float get(Sprite object) {
+        public Float get(Sprite object)
+        {
             return object.getScale();
         }
     };
 
-    public static final Property<Sprite, Integer> ALPHA = new IntProperty<Sprite>("alpha") {
+    public static final Property<Sprite, Integer> ALPHA = new IntProperty<Sprite>("alpha")
+    {
         @Override
-        public void setValue(Sprite object, int value) {
+        public void setValue(Sprite object, int value)
+        {
             object.setAlpha(value);
         }
 
         @Override
-        public Integer get(Sprite object) {
+        public Integer get(Sprite object)
+        {
             return object.getAlpha();
         }
     };

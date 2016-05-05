@@ -1,63 +1,50 @@
 package com.channelsoft.ggsj.login.model;
 
-import android.text.method.HideReturnsTransformationMethod;
-
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.channelsoft.ggsj.http.Http;
 import com.channelsoft.ggsj.http.Url;
-import com.channelsoft.ggsj.login.bean.CompanyData;
-import com.channelsoft.ggsj.login.bean.CompanyInfo;
-import com.channelsoft.ggsj.login.listener.OnLoginListener;
+import com.channelsoft.ggsj.login.viewmodel.ILoginViewModel;
 import com.channelsoft.ggsj.utils.LogUtils;
 import com.channelsoft.ggsj.utils.LoginManager;
-import com.google.gson.Gson;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by dengquan on 16-3-28.
+ * Created by dengquan on 16-5-3.
  */
 public class LoginModel implements ILoginModel
 {
     private static final String TAG = LoginModel.class.getSimpleName();
-    private OnLoginListener listener;
+    private ILoginViewModel viewModel;
 
-    public LoginModel(OnLoginListener listener)
+    public LoginModel(ILoginViewModel viewModel)
     {
-        this.listener = listener;
+        this.viewModel = viewModel;
     }
 
     @Override
-    public void login(final String phoneNumber, final String code)
+    public void login(final String entId)
     {
-        StringRequest request = new StringRequest(Request.Method.POST,Url.HOST + Url.Login.VERIFY_CODE,
+        StringRequest request = new StringRequest(Request.Method.POST, LoginManager.getHelpDesjUrl() + Url.Login.BOSS_LOGIN_HELPDESK,
                 new Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String s)
                     {
-                        LogUtils.i(TAG, s);
-                        Gson gson = new Gson();
-                        CompanyData info ;
-                        try
+                        LogUtils.i(TAG, s.toString());
+                        if (viewModel != null)
                         {
-                            info = gson.fromJson(s.toString(),CompanyData.class);
-                            LoginManager.saveToken(info.getData().getTokenId());
-                            if(listener != null)
-                            {
-                                listener.onLoginSuccess(info);
-                            }
+                            viewModel.onSuccess();
                         }
-                        catch (Exception e)
-                        {
-                            LogUtils.i(TAG,"json exception :"+e.getMessage());
-                        }
-
                     }
                 },
                 new Response.ErrorListener()
@@ -65,9 +52,10 @@ public class LoginModel implements ILoginModel
                     @Override
                     public void onErrorResponse(VolleyError volleyError)
                     {
-                        if(listener != null)
+                        LogUtils.i(TAG, "exception cause " + volleyError.getCause());
+                        if (viewModel != null)
                         {
-                            listener.onLoginError(volleyError.getMessage());
+                            viewModel.onError();
                         }
                     }
                 })
@@ -75,13 +63,48 @@ public class LoginModel implements ILoginModel
             @Override
             protected Map<String, String> getParams() throws AuthFailureError
             {
-                Map<String,String> map = new HashMap<>();
-                map.put("phone",phoneNumber);
-                map.put("code",code);
-                map.put("action",Url.ACTION);
+                Map<String, String> map = new HashMap<>();
+                map.put("phone", "18812345678");
+                map.put("entId", entId);
+                LogUtils.i(TAG, "entId  :" + entId);
+                map.put("tokenId", LoginManager.getToken());
                 return map;
             }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response)
+            {
+                try
+                {
+                    Map<String, String> responseHeaders = response.headers;
+                    String rawCookies = responseHeaders.get("Set-Cookie");
+                    String dataString = new String(response.data, "GBK");
+                    LogUtils.i(TAG, "cookie :" + rawCookies + "   " + responseHeaders.toString());
+                    saveSession(rawCookies);
+                    return Response.success(dataString, HttpHeaderParser.parseCacheHeaders(response));
+                } catch (UnsupportedEncodingException ex)
+                {
+                    return Response.error(new ParseError(ex));
+                }
+
+            }
         };
-        Http.addRequest(request,"Login");
+        Http.addRequest(request, TAG);
     }
+
+    private void saveSession(String cookie)
+    {
+
+        String[] s = cookie.split(";");
+        for(String string :s)
+        {
+            if (string.contains("JSESSIONID"))
+            {
+                LogUtils.e("授权登录获取sessionid=", string.substring(11));
+                LoginManager.saveSessionId(string.substring(11));
+            }
+        }
+
+    }
+
 }

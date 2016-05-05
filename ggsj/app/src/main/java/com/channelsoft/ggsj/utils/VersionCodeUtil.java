@@ -2,9 +2,7 @@ package com.channelsoft.ggsj.utils;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.support.design.widget.TabLayout;
 
-import com.channelsoft.ggsj.BuildConfig;
 import com.channelsoft.ggsj.base.GlobalApplication;
 
 /**

@@ -16,7 +16,7 @@ import com.channelsoft.ggsj.databinding.ActivityBossLoginBinding;
 import com.channelsoft.ggsj.login.bean.CompanyData;
 import com.channelsoft.ggsj.login.broadcast.SmsBroadcast;
 import com.channelsoft.ggsj.login.viewmodel.GenerateCodeViewModel;
-import com.channelsoft.ggsj.login.viewmodel.LoginViewModel;
+import com.channelsoft.ggsj.login.viewmodel.VerifyCodeViewModel;
 import com.channelsoft.ggsj.utils.LogUtils;
 import com.channelsoft.ggsj.utils.PermissionManager;
 import com.channelsoft.ggsj.view.CountDownBtn;
@@ -31,12 +31,12 @@ import java.util.List;
  */
 public class BossLoginActivity extends BaseActivity implements
         View.OnClickListener,CountDownBtn.GetGenerateCodeListener,GenerateCodeViewModel.IGenerateCodeView,
-        LoginViewModel.OnLoginView
+        VerifyCodeViewModel.OnLoginView
 {
     private static final String TAG = BossLoginActivity.class.getSimpleName();
     private ActivityBossLoginBinding binding ;
     private GenerateCodeViewModel generateCodeViewModel;
-    private LoginViewModel loginViewModel;
+    private VerifyCodeViewModel loginViewModel;
     private static final int REQUEST_CODE_SOME_FEATURES_PERMISSIONS = 101;
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -98,7 +98,7 @@ public class BossLoginActivity extends BaseActivity implements
     private void bindViewModel()
     {
         generateCodeViewModel = new GenerateCodeViewModel();
-        loginViewModel = new LoginViewModel(this);
+        loginViewModel = new VerifyCodeViewModel(this);
         binding.bntLogin.setOnClickListener(this);
         binding.btnGenerateCode.setActivity(this);
         binding.btnGenerateCode.setGenerateCodeListener(this);

@@ -1,7 +1,5 @@
 package com.channelsoft.ggsj.login.activity;
 
-import android.app.Activity;
-
 import com.channelsoft.ggsj.base.activity.BaseActivity;
 
 /**

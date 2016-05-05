@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.channelsoft.ggsj.R;
 import com.channelsoft.ggsj.order.bean.OrderListInfo;
-import com.channelsoft.ggsj.view.MeasureLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,6 +101,7 @@ public class OrderAdapter extends RecyclerView.Adapter
 
     class OrderViewHolder extends RecyclerView.ViewHolder
     {
+
         private TextView orderName;
         private TextView dishCountAndPrice;
         private TextView dishNames;

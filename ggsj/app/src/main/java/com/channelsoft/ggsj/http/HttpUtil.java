@@ -1,9 +1,6 @@
 package com.channelsoft.ggsj.http;
 
 import android.content.Context;
-import android.net.NetworkInfo;
-
-import com.channelsoft.ggsj.http.NetWorkHelper;
 
 /**
  * 网络链接状态的判断

@@ -2,12 +2,10 @@ package com.channelsoft.ggsj.login.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.channelsoft.ggsj.BR;
 import com.channelsoft.ggsj.R;
@@ -45,7 +43,7 @@ public class ChooseEntAdapter extends RecyclerView.Adapter
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position)
     {
         CompanyDetailInfo info = data.getData().getCompanyInfo().get(position);
         ((EntViewHolder) holder).getBinding().setVariable(BR.entInfo, info);
@@ -57,7 +55,7 @@ public class ChooseEntAdapter extends RecyclerView.Adapter
             {
                 if(listener != null)
                 {
-                    listener.onClick();
+                    listener.onClick(position);
                 }
             }
         });
@@ -99,6 +97,6 @@ public class ChooseEntAdapter extends RecyclerView.Adapter
 
     public interface OnItemClickListener
     {
-        void onClick();
+        void onClick(int position);
     }
 }

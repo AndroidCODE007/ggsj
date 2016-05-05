@@ -12,11 +12,14 @@ public class SharedPreferencesUtil
     private static final String TAG = SharedPreferencesUtil.class.getSimpleName();
     private static SharedPreferencesUtil preferences;
     public static final String TOKEN = "TOKEN";
+    public static final String SESSIONID = "SESSIONID";
+    public static final String ENTID = "ENTID";
     private SharedPreferences sharedPreferences =
             GlobalApplication.getInstance().getSharedPreferences(TOKEN_MSG, Context.MODE_PRIVATE);;
     private static final String TOKEN_MSG = "token_msg";
     private static final String VERSION_CODE = "version_code";
     private static final String VERSION_NAME = "version_name";
+    private static final String HELP_DESK_URL = "help_desk_url";
     private SharedPreferencesUtil()
     {
 
@@ -52,6 +55,44 @@ public class SharedPreferencesUtil
         return  sharedPreferences.getString(TOKEN,"");
     }
 
+
+    public void saveSessionId(String sessionId)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SESSIONID,sessionId);
+        editor.commit();
+    }
+
+
+    public String getSessionId()
+    {
+        if(sharedPreferences == null)
+        {
+            sharedPreferences = GlobalApplication.getInstance().getSharedPreferences(TOKEN_MSG, Context.MODE_PRIVATE);
+        }
+        LogUtils.i(TAG, sharedPreferences.getString(SESSIONID, ""));
+        return  sharedPreferences.getString(SESSIONID,"");
+    }
+
+
+    public void saveEntId(String entId)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(ENTID,entId);
+        editor.commit();
+    }
+
+
+    public String getEntId()
+    {
+        if(sharedPreferences == null)
+        {
+            sharedPreferences = GlobalApplication.getInstance().getSharedPreferences(TOKEN_MSG, Context.MODE_PRIVATE);
+        }
+        LogUtils.i(TAG, sharedPreferences.getString(ENTID, ""));
+        return  sharedPreferences.getString(ENTID,"");
+    }
+
     public void saveVersionCode(int code)
     {
         if(sharedPreferences == null)
@@ -70,5 +111,25 @@ public class SharedPreferencesUtil
             sharedPreferences = GlobalApplication.getInstance().getSharedPreferences(TOKEN_MSG, Context.MODE_PRIVATE);
         }
         return  sharedPreferences.getInt(VERSION_CODE,0);
+    }
+
+    public void saveHelpDeskUrl(String url)
+    {
+        if(sharedPreferences == null)
+        {
+            sharedPreferences = GlobalApplication.getInstance().getSharedPreferences(TOKEN_MSG, Context.MODE_PRIVATE);
+        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(HELP_DESK_URL,url);
+        editor.commit();
+    }
+
+    public String getHelpDeskUrl()
+    {
+        if(sharedPreferences == null)
+        {
+            sharedPreferences = GlobalApplication.getInstance().getSharedPreferences(TOKEN_MSG, Context.MODE_PRIVATE);
+        }
+        return  sharedPreferences.getString(HELP_DESK_URL,"");
     }
 }

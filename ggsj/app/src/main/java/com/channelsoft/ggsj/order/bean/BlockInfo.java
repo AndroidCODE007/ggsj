@@ -3,7 +3,8 @@ package com.channelsoft.ggsj.order.bean;
 /**
  * Created by chenyg on 2016/4/21.
  */
-public class BlockInfo {
+public class BlockInfo
+{
     private String blockName;
     private String blockCount;
 

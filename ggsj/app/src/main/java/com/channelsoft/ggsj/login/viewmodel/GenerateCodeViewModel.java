@@ -6,8 +6,6 @@ import com.channelsoft.ggsj.base.bean.BaseInfo;
 import com.channelsoft.ggsj.login.listener.GetGenerateCodeListener;
 import com.channelsoft.ggsj.login.model.GenerateCodeModel;
 
-import java.util.regex.Matcher;
-
 /**
  * 获取验证码
  * Created by dengquan on 16-3-24.

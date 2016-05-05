@@ -5,11 +5,14 @@ import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.channelsoft.ggsj.R;
+import com.channelsoft.ggsj.order.listener.OnDynamicClickListener;
 import com.channelsoft.ggsj.utils.ScreenUtils;
 
 
@@ -17,53 +20,58 @@ import com.channelsoft.ggsj.utils.ScreenUtils;
  * socket异常
  * Created by dengquan on 2015/10/29.
  */
-public class SocketExceptionLinear extends LinearLayout{
+public class SocketExceptionLinear extends LinearLayout implements BaseLinear
+{
     private ImageView bg;
     private TextView textView;
 
-    private LayoutParams params;
+    private RelativeLayout.LayoutParams params;
     private LayoutParams bgParams;
     private LayoutParams textParams;
+    public  OnDynamicClickListener listener = null;
     private float density = ScreenUtils.getDensity();
+
     public SocketExceptionLinear(Context context)
     {
-        this(context,null);
+        this(context, null);
     }
 
     public SocketExceptionLinear(Context context, AttributeSet attrs)
     {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public SocketExceptionLinear(Context context, AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
-        initView(context);
+        init(context);
         setContentSize(context);
-        initView(context,attrs);
+        initView(context, attrs);
     }
 
     /**
      * 初始化对象
+     *
      * @param context
      */
-    private void initView(Context context)
+    private void init(Context context)
     {
-        params = (LinearLayout.LayoutParams)this.getLayoutParams();
-        if(params == null)
+        params = (RelativeLayout.LayoutParams) this.getLayoutParams();
+        if (params == null)
         {
-            params = new LinearLayout.LayoutParams(context,null);
+            params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT);
         }
 
-
         bg = new ImageView(context);
-        bgParams = new LayoutParams(context,null);
+        this.addView(bg);
+        bgParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         textView = new TextView(context);
-        textParams = new LayoutParams(context,null);
-
-        this.addView(bg);
         this.addView(textView);
+        textParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+
         this.setGravity(Gravity.CENTER);
         this.setOrientation(VERTICAL);
 
@@ -71,56 +79,75 @@ public class SocketExceptionLinear extends LinearLayout{
 
     /**
      * 设置内容区域的大小
+     *
      * @param context
      */
     private void setContentSize(Context context)
     {
-        if(bgParams != null)
+        if (bgParams != null)
         {
-            bgParams.width = (int)(90 * density);
-            bgParams.height = (int)(90 * density);
+            bgParams.width = (int) (90 * density);
+            bgParams.height = (int) (90 * density);
         }
 
-        if(textParams != null)
+        if (textParams != null)
         {
-            textParams.height = (int)(45 * density);
-            textParams.width = (int)(180 * density);
+            textParams.height = (int) (45 * density);
+            textParams.width = (int) (180 * density);
         }
 
         bg.setLayoutParams(bgParams);
         textView.setLayoutParams(textParams);
     }
 
-    private void initView(Context context,AttributeSet attrs)
+    private void initView(Context context, AttributeSet attrs)
     {
-        TypedArray array = context.obtainStyledAttributes(R.styleable.SocketException);
-        if(array != null)
+        TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.SocketException);
+        if (array != null)
         {
-            int bgId = array.getResourceId(R.styleable.SocketException_SocketExceptionBg,0);
-            if(bgId == 0)
+            int bgId = array.getResourceId(R.styleable.SocketException_SocketExceptionBg, 0);
+            String content = array.getString(R.styleable.SocketException_SocketExceptionDescription);
+            if (bgId == 0)
             {
                 bgId = R.mipmap.ic_launcher;
             }
             bg.setImageResource(bgId);
 
-            String content = array.getString(R.styleable.SocketException_SocketExceptionDescription);
-            if(TextUtils.isEmpty(content))
+            if (TextUtils.isEmpty(content))
             {
-                content = "哎呀，暂时没有任何数据。。。。。。";
+                content = "哎呀，服务器出错了。。。。。。";
             }
             textView.setText(content);
         }
+        array.recycle();
+        textView.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(listener != null)
+                {
+                    listener.onDynamicClick(OnDynamicClickListener.TypeClick.socketExceptionClick);
+                }
+            }
+        });
     }
 
     /**
-     *
-     * @param bgId  @not null
+     * @param bgId    @not null
      * @param content
      */
-    public void setContent(int bgId ,int content)
+    public void setContent(int bgId, int content)
     {
         bg.setImageResource(bgId);
         textView.setText(content);
+    }
+
+
+    @Override
+    public void setOnDynamicClickListener(OnDynamicClickListener listener)
+    {
+        this.listener = listener;
     }
 
 }

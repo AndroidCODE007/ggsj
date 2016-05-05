@@ -37,7 +37,7 @@
             android:theme="@style/BaseAppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.channelsoft.ggsj.base.activity.BaseActivity" />
+                android:value=".base.activity.BaseActivity" />
         </activity>
 
         <!-- 员工登录 -->
@@ -47,7 +47,7 @@
             android:theme="@style/BaseAppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.channelsoft.ggsj.base.activity.BaseActivity" />
+                android:value=".base.activity.BaseActivity" />
         </activity>
 
         <!--选择店铺-->
