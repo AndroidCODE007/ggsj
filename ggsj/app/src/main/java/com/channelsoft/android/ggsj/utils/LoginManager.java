@@ -51,7 +51,7 @@ public class LoginManager
         SharedPreferencesUtil.getSharedPreferences().saveHelpDeskUrl(helpDeskUrl);
     }
 
-    public static String getHelpDesjUrl()
+    public static String getHelpDeskUrl()
     {
         return  SharedPreferencesUtil.getSharedPreferences().getHelpDeskUrl();
 

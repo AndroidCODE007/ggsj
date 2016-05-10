@@ -40,7 +40,7 @@ public class GetOrderListModelImpl implements IGetOrderListModel
     {
         request = new StringRequest(
                 Request.Method.POST,
-                LoginManager.getHelpDesjUrl() + Url.Order.GET_ORDERLIST+";jsessionid="
+                LoginManager.getHelpDeskUrl() + Url.Order.GET_ORDERLIST+";jsessionid="
                         + LoginManager.getSessionId(),
                 rightlistener = new Response.Listener<String>()
                 {

@@ -19,16 +19,18 @@ public class GlobalApplication extends Application
     public static GlobalApplication instance;
 
     //小米推送APPId和APPKey
-    public static final String APP_ID = "2882303761517413983";
-    public static final String APP_KEY = "5431741365983";
+    public static final String APP_ID = "2882303761517399502";
+    public static final String APP_KEY = "5281739953502";
+
+    public boolean isRegistToMiPush = false;
+
+    public static boolean isShow = false;//控制弹窗，只弹一次
 
     @Override
     public void onCreate()
     {
         super.onCreate();
         instance = this;
-
-        registToMiPush();
     }
 
     public static Context getInstance()
@@ -59,10 +61,7 @@ public class GlobalApplication extends Application
     public void registToMiPush(){
         if (shouldInit())
         {
-            String phoneNumber = LoginManager.getPhoneNumber();
-            if(!phoneNumber.equals("0")){
-                MiPushClient.registerPush(this, APP_ID, APP_KEY);
-            }
+            MiPushClient.registerPush(this, APP_ID, APP_KEY);
         }
     }
 }

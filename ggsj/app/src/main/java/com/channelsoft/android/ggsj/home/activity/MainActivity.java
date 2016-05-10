@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.channelsoft.android.ggsj.R;
+import com.channelsoft.android.ggsj.base.GlobalApplication;
 import com.channelsoft.android.ggsj.base.activity.BaseActivity;
 import com.channelsoft.android.ggsj.databinding.ActivityMainBinding;
 
@@ -29,6 +30,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        if(!GlobalApplication.instance.isRegistToMiPush){
+            GlobalApplication.instance.registToMiPush();
+        }
+
         initToolBarAndDrawer();
     }
 

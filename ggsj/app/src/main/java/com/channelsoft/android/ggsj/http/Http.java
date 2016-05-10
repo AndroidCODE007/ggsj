@@ -72,7 +72,7 @@ public class Http
                                      final Map<String, String> params, final StringRequest request,
                                      final Response.Listener listener, final Response.ErrorListener errorListener)
     {
-        String URL = LoginManager.getHelpDesjUrl() + Url.Login.RE_LOGIN;
+        String URL = LoginManager.getHelpDeskUrl() + Url.Login.RE_LOGIN;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>()
                 {
