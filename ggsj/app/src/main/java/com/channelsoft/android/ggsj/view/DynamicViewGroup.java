@@ -6,15 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-
 import com.channelsoft.android.ggsj.R;
 import com.channelsoft.android.ggsj.order.listener.OnDynamicClickListener;
 import com.channelsoft.android.ggsj.utils.LogUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 布局文件
  * Created by dengquan on 16-4-22.
  */
 public class DynamicViewGroup extends RelativeLayout implements OnDynamicClickListener
@@ -80,7 +79,6 @@ public class DynamicViewGroup extends RelativeLayout implements OnDynamicClickLi
     private View initView(int layout, String tag)
     {
         View view = mInflater.inflate(layout, null);
-
         view.setTag(tag);
         view.setVisibility(View.GONE);
         return view;
@@ -183,7 +181,8 @@ public class DynamicViewGroup extends RelativeLayout implements OnDynamicClickLi
             {
                 view.setVisibility(View.VISIBLE);
                 LogUtils.i(TAG,"view visible +"+view.toString() + view.getTag()
-                        +view.getWidth() +"   "+view.getHeight());
+                        +view.getWidth() +"   "+
+                        view.getHeight()+"view params :"+view.getLayoutParams().toString());
             }
             else
             {
