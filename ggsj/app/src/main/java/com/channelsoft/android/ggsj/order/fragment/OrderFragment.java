@@ -4,11 +4,9 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Toast;
 import com.channelsoft.android.ggsj.R;
 import com.channelsoft.android.ggsj.base.fragment.BaseFragment;
@@ -19,11 +17,13 @@ import com.channelsoft.android.ggsj.order.bean.OrderListResult;
 import com.channelsoft.android.ggsj.order.viewmodel.GetOrderListViewModelImpl;
 import com.channelsoft.android.ggsj.order.viewmodel.IGetOrderListViewModel;
 import com.channelsoft.android.ggsj.view.DynamicViewGroup;
+import com.channelsoft.android.ggsj.view.LoadFooterView;
 import com.channelsoft.android.ggsj.view.LoadMoreRecycleView;
 import com.channelsoft.android.ggsj.view.MeasureLayoutManager;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,7 +32,9 @@ import java.util.List;
  */
 public class OrderFragment extends BaseFragment implements
         LoadMoreRecycleView.OnScrollChangedListener,
-        MeasureLayoutManager.OnMeasureCompleteListener, GetOrderListViewModelImpl.OnGetOrderListView, DynamicViewGroup.OnBtnClickListener
+        MeasureLayoutManager.OnMeasureCompleteListener,
+        GetOrderListViewModelImpl.OnGetOrderListView, DynamicViewGroup.OnBtnClickListener,
+        LoadFooterView.onFooterViewClickListener
 {
     private LoadMoreRecycleView recyclerView;
     private FragmentOrderBinding binding;
@@ -68,7 +70,7 @@ public class OrderFragment extends BaseFragment implements
 
     private void initView()
     {
-        binding.dynamicView.setDataView(LayoutInflater.from(getActivity()).inflate(R.layout.layout_order_data, null));
+        binding.dynamicView.setDataView(LayoutInflater.from(getActivity()).inflate(R.layout.layout_order_data, binding.dynamicView,false));
         binding.dynamicView.showLoadingLayout();
         orderList = new ArrayList<>();
 
@@ -78,11 +80,8 @@ public class OrderFragment extends BaseFragment implements
             @Override
             public void onRefresh()
             {
-                page = 1;
-
                 binding.swipeOrder.setRefreshing(false);
                 isLoadMoreOrRefresh = true;
-
                 getOrderListViewModel.getOrderList("0", page);
             }
         });
@@ -93,7 +92,6 @@ public class OrderFragment extends BaseFragment implements
     {
         isLoadMoreOrRefresh = false;
         page += 1;
-
         getOrderListViewModel.getOrderList("0", page);
     }
 
@@ -106,7 +104,7 @@ public class OrderFragment extends BaseFragment implements
     @Override
     public void onMeasureComplete()
     {
-//        binding.recycleView.setIsFullScreen(manager);
+        recyclerView.setIsFullScreen(manager);
     }
 
     @Override
@@ -118,26 +116,39 @@ public class OrderFragment extends BaseFragment implements
     @Override
     public void onGetSuccess(OrderListResult result)
     {
-        binding.dynamicView.showCustomView();
-        manager = new MeasureLayoutManager(getActivity());
-        manager.setOnMeasureCompleteListener(this);
-        adapter = new OrderAdapter(getActivity(), orderList);
-        recyclerView = ((LoadMoreRecycleView) binding.dynamicView.getDataView());
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setOnScrollChangedListener(this);
-        recyclerView.setIsLoading();
+        initAdapter();
+        page =  result.getPage();
         if (isLoadMoreOrRefresh)
         {
             orderList.clear();
             orderList = result.getOrderList();
             adapter.addHeaderData(orderList);
-        } else
+        }
+        else
         {
             orderList.addAll(result.getOrderList());
             adapter.addFooterData(orderList);
         }
+    }
+
+    private void initAdapter()
+    {
+        recyclerView = ((LoadMoreRecycleView) binding.dynamicView.getDataView());
+        binding.dynamicView.showCustomView();
+        adapter = new OrderAdapter(getActivity(), orderList);
+        manager = new MeasureLayoutManager(getActivity());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(manager);
+        //使RecyclerView保持固定的大小,这样会提高RecyclerView的性能。
+        recyclerView.setHasFixedSize(true);
+        manager.setOnMeasureCompleteListener(this);
+
+
+        recyclerView.setHasFixedSize(true);
+
+        recyclerView.setOnScrollChangedListener(this);
+        recyclerView.setIsLoading();
+
     }
 
     @Override
@@ -163,5 +174,14 @@ public class OrderFragment extends BaseFragment implements
     public void onRefresh()
     {
 
+    }
+
+    /**
+     * 底部加载更多的布局的按钮事件，不是自动触发而是手动触发，比如网路异常的点击事件，或者没有更多数据的点击事件
+     */
+    @Override
+    public void onFooterLoadMore()
+    {
+        adapter.getFooterView().setOnFooterViewClickListener(this);
     }
 }

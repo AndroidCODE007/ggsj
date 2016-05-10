@@ -24,28 +24,39 @@ public class MeasureLayoutManager extends LinearLayoutManager
         LogUtils.i("LoadMoreRecycleView", "init MeasureLayoutManager   ");
     }
 
+    /**
+     * 注解：getChildCount的值是0   ；     getItemCount得到的值是4
+     * @param recycler
+     * @param state
+     * @param widthSpec
+     * @param heightSpec
+     */
     @Override
     public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec)
     {
         super.onMeasure(recycler, state, widthSpec, heightSpec);
-        LogUtils.i("LoadMoreRecycleView", "onMeasure   xcc:" );
+        LogUtils.i("LoadMoreRecycleView", "onMeasure   xcc:"+this.getChildCount()+"  "+this.getItemCount());
 
-        for (int i = 0; i < this.getChildCount(); i++)
-        {
-            View view = this.getChildAt(i);
-            measureChild(view, widthSpec, heightSpec);
-            int width = View.MeasureSpec.getSize(widthSpec);
-            int height = view.getMeasuredHeight();
-            setMeasuredDimension(width, height);
-            sumHeight += this.getChildAt(i).getMeasuredHeight();
-            LogUtils.i("LoadMoreRecycleView","item height :"+this.getChildAt(i).getMeasuredHeight());
-        }
+
+        LogUtils.i("LoadMoreRecycleView", "sumHeight :" + sumHeight);
         if(listener != null)
         {
             listener.onMeasureComplete();
         }
-        LogUtils.i("LoadMoreRecycleView", "sumHeight :" + sumHeight + "   childCount :" + this.getChildCount());
     }
+
+    @Override
+    public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state)
+    {
+        super.onLayoutChildren(recycler, state);
+        for (int i = 0; i < this.getItemCount(); i++)
+        {
+            View view = recycler.getViewForPosition(i);
+            sumHeight += recycler.getViewForPosition(i).getMeasuredHeight();
+            LogUtils.i("LoadMoreRecycleView","item height :"+recycler.getViewForPosition(i).getHeight());
+        }
+    }
+
 
     public int getSumHeight()
     {

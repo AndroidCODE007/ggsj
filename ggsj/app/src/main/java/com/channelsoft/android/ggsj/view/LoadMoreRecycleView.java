@@ -11,10 +11,12 @@ import com.channelsoft.android.ggsj.utils.ScreenUtils;
 
 
 /**
+ * 可以测量View是否大于一个屏幕，以及显示加载更多的View和底部布局的各种操作
  * Created by dengquan on 16-4-18.
  */
 public class LoadMoreRecycleView extends RecyclerView
 {
+
     private static final String TAG = LoadMoreRecycleView.class.getSimpleName();
     private int lastVisibleItem;
     private OnScrollChangedListener listener;
@@ -84,7 +86,8 @@ public class LoadMoreRecycleView extends RecyclerView
             public void onScrollStateChanged(RecyclerView recyclerView, int newState)
             {
                 super.onScrollStateChanged(recyclerView, newState);
-                LogUtils.i(TAG, "onScrollStateChanged   :" + newState + "    lastVisibleItemPosition  :" + lastVisibleItem);
+                LogUtils.i(TAG, "onScrollStateChanged   :" + newState +
+                        "    lastVisibleItemPosition  :" + lastVisibleItem);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
                         && LoadMoreRecycleView.this.getAdapter().getItemCount()
                         == lastVisibleItem + 1)
@@ -108,6 +111,7 @@ public class LoadMoreRecycleView extends RecyclerView
                 //LogUtils.i(TAG,"onScrolled    dx :"+dx +"  dy : "+dy);
                 LinearLayoutManager manager = (LinearLayoutManager) LoadMoreRecycleView.this.getLayoutManager();
                 lastVisibleItem = manager.findLastVisibleItemPosition();
+                LogUtils.i(TAG,"is full screen :"+isFullScreen);
                 if (!isFullScreen)
                 {
                     //不需要加载数据。j使空间不可见
@@ -116,7 +120,10 @@ public class LoadMoreRecycleView extends RecyclerView
                             ((LinearLayoutManager) LoadMoreRecycleView.this.getLayoutManager()).findLastVisibleItemPosition() + 1)
                     {
                         View view = recyclerView.getChildAt(recyclerView.getAdapter().getItemCount() - 1);
-                        view.setVisibility(View.GONE);
+                        if(view != null)
+                        {
+                            view.setVisibility(View.GONE);
+                        }
                     }
                 }
             }
@@ -130,4 +137,5 @@ public class LoadMoreRecycleView extends RecyclerView
     {
         isLoading = false;
     }
+
 }

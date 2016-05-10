@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="noMoreId" type="id">0x23812</item>
+    <item name="netExceptionId" type="id">0x56781</item>
+    <item name="loadingId" type="id">0x98641</item>
+</resources>

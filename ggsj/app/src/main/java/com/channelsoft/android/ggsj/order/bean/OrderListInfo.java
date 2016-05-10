@@ -2,17 +2,16 @@ package com.channelsoft.android.ggsj.order.bean;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.Observable;
 import android.support.annotation.BinderThread;
 
-
 import com.channelsoft.android.ggsj.BR;
-
 import java.util.List;
 
 /**
  * Created by chenyg on 2016/4/21.
  */
-public class OrderListInfo
+public class OrderListInfo extends BaseObservable
 {
     private String arrivedTime;
     private String cancelReason;
@@ -49,6 +48,7 @@ public class OrderListInfo
     private String summaryPrice;
     private String summaryPriceByFen;
 
+    @Bindable
     public List<DishInfo> getDishList()
     {
         return dishList;
@@ -57,8 +57,10 @@ public class OrderListInfo
     public void setDishList(List<DishInfo> dishList)
     {
         this.dishList = dishList;
+        notifyPropertyChanged(BR.dishList);
     }
 
+    @Bindable
     public List<DishInfo> getSubOrderList()
     {
         return subOrderList;
@@ -67,8 +69,10 @@ public class OrderListInfo
     public void setSubOrderList(List<DishInfo> subOrderList)
     {
         this.subOrderList = subOrderList;
+        notifyPropertyChanged(BR.subOrderList);
     }
 
+    @Bindable
     public List<DishInfo> getReduceOrderList()
     {
         return reduceOrderList;
@@ -78,8 +82,10 @@ public class OrderListInfo
     public void setReduceOrderList(List<DishInfo> reduceOrderList)
     {
         this.reduceOrderList = reduceOrderList;
+        notifyPropertyChanged(BR.reduceOrderList);
     }
 
+    @Bindable
     public String getReduceDishTotalPrice()
     {
         return reduceDishTotalPrice;
@@ -88,8 +94,10 @@ public class OrderListInfo
     public void setReduceDishTotalPrice(String reduceDishTotalPrice)
     {
         this.reduceDishTotalPrice = reduceDishTotalPrice;
+        notifyPropertyChanged(BR.reduceDishTotalPrice);
     }
 
+    @Bindable
     public String getReduceDishTotalPriceByFen()
     {
         return reduceDishTotalPriceByFen;
@@ -98,8 +106,10 @@ public class OrderListInfo
     public void setReduceDishTotalPriceByFen(String reduceDishTotalPriceByFen)
     {
         this.reduceDishTotalPriceByFen = reduceDishTotalPriceByFen;
+        notifyPropertyChanged(BR.reduceDishTotalPriceByFen);
     }
 
+    @Bindable
     public String getSummaryPrice()
     {
         return summaryPrice;
@@ -108,8 +118,10 @@ public class OrderListInfo
     public void setSummaryPrice(String summaryPrice)
     {
         this.summaryPrice = summaryPrice;
+        notifyPropertyChanged(BR.summaryPrice);
     }
 
+    @Bindable
     public String getSummaryPriceByFen()
     {
         return summaryPriceByFen;
@@ -118,8 +130,10 @@ public class OrderListInfo
     public void setSummaryPriceByFen(String summaryPriceByFen)
     {
         this.summaryPriceByFen = summaryPriceByFen;
+        notifyPropertyChanged(BR.summaryPriceByFen);
     }
 
+    @Bindable
     public String getArrivedTime()
     {
         return arrivedTime;
@@ -128,8 +142,10 @@ public class OrderListInfo
     public void setArrivedTime(String arrivedTime)
     {
         this.arrivedTime = arrivedTime;
+        notifyPropertyChanged(BR.arrivedTime);
     }
 
+    @Bindable
     public String getCancelReason()
     {
         return cancelReason;
@@ -138,8 +154,10 @@ public class OrderListInfo
     public void setCancelReason(String cancelReason)
     {
         this.cancelReason = cancelReason;
+        notifyPropertyChanged(BR.cancelReason);
     }
 
+    @Bindable
     public String getNote()
     {
         return note;
@@ -148,8 +166,10 @@ public class OrderListInfo
     public void setNote(String note)
     {
         this.note = note;
+        notifyPropertyChanged(BR.note);
     }
 
+    @Bindable
     public String getServingInfo()
     {
         return servingInfo;
@@ -158,18 +178,23 @@ public class OrderListInfo
     public void setServingInfo(String servingInfo)
     {
         this.servingInfo = servingInfo;
+        notifyPropertyChanged(BR.servingInfo);
     }
 
+    @Bindable
     public String getDeskId()
     {
         return deskId;
     }
 
+
     public void setDeskId(String deskId)
     {
         this.deskId = deskId;
+        notifyPropertyChanged(BR.deskId);
     }
 
+    @Bindable
     public String getDeskNo()
     {
         return deskNo;
@@ -178,8 +203,10 @@ public class OrderListInfo
     public void setDeskNo(String deskNo)
     {
         this.deskNo = deskNo;
+        notifyPropertyChanged(BR.deskNo);
     }
 
+    @Bindable
     public String getDeskType()
     {
         return deskType;
@@ -188,8 +215,10 @@ public class OrderListInfo
     public void setDeskType(String deskType)
     {
         this.deskType = deskType;
+        notifyPropertyChanged(BR.deskType);
     }
 
+    @Bindable
     public String getDiscount()
     {
         return discount;
@@ -198,8 +227,10 @@ public class OrderListInfo
     public void setDiscount(String discount)
     {
         this.discount = discount;
+        notifyPropertyChanged(BR.discount);
     }
 
+    @Bindable
     public String getIsArrived()
     {
         return isArrived;
@@ -208,8 +239,10 @@ public class OrderListInfo
     public void setIsArrived(String isArrived)
     {
         this.isArrived = isArrived;
+        notifyPropertyChanged(BR.isArrived);
     }
 
+    @Bindable
     public String getLeaveShopTime()
     {
         return leaveShopTime;
@@ -218,8 +251,10 @@ public class OrderListInfo
     public void setLeaveShopTime(String leaveShopTime)
     {
         this.leaveShopTime = leaveShopTime;
+        notifyPropertyChanged(BR.leaveShopTime);
     }
 
+    @Bindable
     public String getMealNumber()
     {
         return mealNumber;
@@ -228,8 +263,10 @@ public class OrderListInfo
     public void setMealNumber(String mealNumber)
     {
         this.mealNumber = mealNumber;
+        notifyPropertyChanged(BR.mealNumber);
     }
 
+    @Bindable
     public String getMealTime()
     {
         return mealTime;
@@ -238,8 +275,10 @@ public class OrderListInfo
     public void setMealTime(String mealTime)
     {
         this.mealTime = mealTime;
+        notifyPropertyChanged(BR.mealTime);
     }
 
+    @Bindable
     public String getMemoryStatus()
     {
         return memoryStatus;
@@ -248,8 +287,10 @@ public class OrderListInfo
     public void setMemoryStatus(String memoryStatus)
     {
         this.memoryStatus = memoryStatus;
+        notifyPropertyChanged(BR.memoryStatus);
     }
 
+    @Bindable
     public String getOrderId()
     {
         return orderId;
@@ -258,8 +299,10 @@ public class OrderListInfo
     public void setOrderId(String orderId)
     {
         this.orderId = orderId;
+        notifyPropertyChanged(BR.orderId);
     }
 
+    @Bindable
     public String getOrderType()
     {
         return orderType;
@@ -268,8 +311,10 @@ public class OrderListInfo
     public void setOrderType(String orderType)
     {
         this.orderType = orderType;
+        notifyPropertyChanged(BR.orderType);
     }
 
+    @Bindable
     public String getParentOrderId()
     {
         return parentOrderId;
@@ -278,8 +323,10 @@ public class OrderListInfo
     public void setParentOrderId(String parentOrderId)
     {
         this.parentOrderId = parentOrderId;
+        notifyPropertyChanged(BR.parentOrderId);
     }
 
+    @Bindable
     public String getPayPrice()
     {
         return payPrice;
@@ -288,8 +335,10 @@ public class OrderListInfo
     public void setPayPrice(String payPrice)
     {
         this.payPrice = payPrice;
+        notifyPropertyChanged(BR.payPrice);
     }
 
+    @Bindable
     public String getPrint()
     {
         return print;
@@ -298,8 +347,10 @@ public class OrderListInfo
     public void setPrint(String print)
     {
         this.print = print;
+        notifyPropertyChanged(BR.print);
     }
 
+    @Bindable
     public String getReceiveOrderTime()
     {
         return receiveOrderTime;
@@ -308,8 +359,10 @@ public class OrderListInfo
     public void setReceiveOrderTime(String receiveOrderTime)
     {
         this.receiveOrderTime = receiveOrderTime;
+        notifyPropertyChanged(BR.receiveOrderTime);
     }
 
+    @Bindable
     public String getRemark()
     {
         return remark;
@@ -318,8 +371,10 @@ public class OrderListInfo
     public void setRemark(String remark)
     {
         this.remark = remark;
+        notifyPropertyChanged(BR.remark);
     }
 
+    @Bindable
     public String getReturnPrice()
     {
         return returnPrice;
@@ -328,8 +383,10 @@ public class OrderListInfo
     public void setReturnPrice(String returnPrice)
     {
         this.returnPrice = returnPrice;
+        notifyPropertyChanged(BR.returnPrice);
     }
 
+    @Bindable
     public String getStatus()
     {
         return status;
@@ -338,8 +395,10 @@ public class OrderListInfo
     public void setStatus(String status)
     {
         this.status = status;
+        notifyPropertyChanged(BR.status);
     }
 
+    @Bindable
     public String getSubmitWay()
     {
         return submitWay;
@@ -348,8 +407,10 @@ public class OrderListInfo
     public void setSubmitWay(String submitWay)
     {
         this.submitWay = submitWay;
+        notifyPropertyChanged(BR.submitWay);
     }
 
+    @Bindable
     public String getTotalPrice()
     {
         return totalPrice;
@@ -358,8 +419,10 @@ public class OrderListInfo
     public void setTotalPrice(String totalPrice)
     {
         this.totalPrice = totalPrice;
+        notifyPropertyChanged(BR.totalPrice);
     }
 
+    @Bindable
     public String getUpdateTime()
     {
         return updateTime;
@@ -368,8 +431,10 @@ public class OrderListInfo
     public void setUpdateTime(String updateTime)
     {
         this.updateTime = updateTime;
+        notifyPropertyChanged(BR.updateTime);
     }
 
+    @Bindable
     public String getUserName()
     {
         return userName;
@@ -378,8 +443,10 @@ public class OrderListInfo
     public void setUserName(String userName)
     {
         this.userName = userName;
+        notifyPropertyChanged(BR.userName);
     }
 
+    @Bindable
     public String getUserPhone()
     {
         return userPhone;
@@ -388,5 +455,29 @@ public class OrderListInfo
     public void setUserPhone(String userPhone)
     {
         this.userPhone = userPhone;
+        notifyPropertyChanged(BR.userPhone);
+    }
+
+    public String getDishCountAndPrice(List<DishInfo> list,String price)
+    {
+        return list.size()+"道菜"+"  ￥"+price;
+    }
+
+    public String getDishName(List<DishInfo> list)
+    {
+        String dishName = "";
+        if(list != null && list.size() > 0)
+        {
+            for(int i = 0;i<list.size();i++)
+            {
+                dishName += list.get(i).getDishName()+ " ";
+            }
+        }
+        return dishName;
+    }
+
+    public String getPayMessage(String pay,String returnPay)
+    {
+        return "顾客实付"+pay +"  退款"+returnPay;
     }
 }
