@@ -18,6 +18,7 @@ import com.channelsoft.android.ggsj.login.viewmodel.LoginViewModel;
 import com.channelsoft.android.ggsj.order.model.GetOrderListModelImpl;
 import com.channelsoft.android.ggsj.utils.LogUtils;
 import com.channelsoft.android.ggsj.utils.LoginManager;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 
 /**
@@ -77,8 +78,6 @@ public class ChooseEntActivity extends BaseActivity implements ChooseEntAdapter.
     public void onSuccess()
     {
         startActivity(new Intent(ChooseEntActivity.this, MainActivity.class));
-        GlobalApplication.instance.registToMiPush();
-        GlobalApplication.instance.isRegistToMiPush = true;
     }
 
     @Override

@@ -27,19 +27,11 @@ import java.util.List;
 /**
  * Created by chenyg on 2016/5/3.
  */
-public class PushMsgReceiver extends PushMessageReceiver implements RegistMsgCentrePushModelImpl.OnRegistPush{
+public class PushMsgReceiver extends PushMessageReceiver{
 
     private static final String TAG = PushMsgReceiver.class.getSimpleName();
-    private IRegistMsgCentrePushModel model;
-    private String deviceOsVersion;
-    private String appVersion;
-    private String regId;
-    private String deviceModel;
-    private String alias;
-    private String userAccount;
-    private String osType;
-
     private String mainActivity = "com.activity.MainActivity";
+    private String regId;
 
     @Override
     public void onCommandResult(Context context, MiPushCommandMessage miPushCommandMessage) {
@@ -157,8 +149,8 @@ public class PushMsgReceiver extends PushMessageReceiver implements RegistMsgCen
             LogUtils.i(TAG, "向小米注册成功");
 
             MiPushClient.setAlias(context, LoginManager.getDeviceId(), null);
-            MiPushClient.setUserAccount(context,LoginManager.getEntId(),null);
             LogUtils.i(TAG, "设置别名成功");
+
 
             regId = null;
             List<String> commandArgument = miPushCommandMessage.getCommandArguments();
@@ -166,21 +158,7 @@ public class PushMsgReceiver extends PushMessageReceiver implements RegistMsgCen
                 regId = commandArgument.get(0);
             }
 
-            deviceModel = Build.MODEL;
-            deviceOsVersion = Build.VERSION.RELEASE;
-            appVersion = VersionCodeUtil.getCurrentName();
-            alias = LoginManager.getDeviceId();
-            userAccount = LoginManager.getEntId();
-            osType = "1";
-
-            LogUtils.i(TAG,"regId = " + regId + "    deviceOsVersion = " + deviceOsVersion
-                    + "    deviceModel = " + deviceModel + "     appVersion = "
-                    + appVersion + "    alias = " + alias + "    userAccount = "+ userAccount
-                    + "    osType = " + osType);
-
-            model = new RegistMsgCentrePushModelImpl(this);
-            model.registMsgCentre(regId,deviceOsVersion,deviceModel,appVersion,alias,userAccount,osType);
-
+            LoginManager.saveRegId(regId);
 
         }else {
             //向小米注册失败，重新注册
@@ -188,21 +166,6 @@ public class PushMsgReceiver extends PushMessageReceiver implements RegistMsgCen
             GlobalApplication.instance.registToMiPush();
         }
 
-    }
-
-    @Override
-    public void onRegistPushSuccess() {
-        LogUtils.i(TAG, "向消息中心注册成功");
-    }
-
-    @Override
-    public void onRegistPushError() {
-        LogUtils.i(TAG, "向消息中心注册失败");
-        //失败了再注册一遍
-        if(model == null){
-            model = new RegistMsgCentrePushModelImpl(this);
-        }
-        model.registMsgCentre(regId, deviceOsVersion, deviceModel, appVersion, alias, userAccount, osType);
     }
 
     /**
@@ -216,18 +179,18 @@ public class PushMsgReceiver extends PushMessageReceiver implements RegistMsgCen
             ,AuthMiMsg msg, int notifyType, String startActivityAction) {
         if(!TextUtils.isEmpty(LoginManager.getSessionId()) && !TextUtils.isEmpty(msg.getOrderId())){//有Id已登录
             LogUtils.i(TAG,"有ID已登录");
-            if(!ScreenUtils.isApplicationBroughtToBackground(GlobalApplication.getInstance())
-                    && ScreenUtils.isNotLockAndNotCloseScreen(context)){//在前台、未锁屏、未息屏，弹窗
-                LogUtils.i(TAG,"makeDialog");
-                makeDialog(context, dialogTitle, dialogContent, msg);
-            }else {
+//            if(!ScreenUtils.isApplicationBroughtToBackground(GlobalApplication.getInstance())
+//                    && ScreenUtils.isNotLockAndNotCloseScreen(context)){//在前台、未锁屏、未息屏，弹窗
+//                LogUtils.i(TAG,"makeDialog");
+//                makeDialog(context, dialogTitle, dialogContent, msg);
+//            }else {
                 LogUtils.i(TAG,"else");
                 //在后台、或锁屏、或息屏，弹通知栏
                 if (!TextUtils.isEmpty(msg.getNotifyTitle())) {
                     LogUtils.i(TAG,"makeNotification");
                     makeNotification(context, msg.getNotifyTitle(), msg.getOrderId(), notifyType, startActivityAction);
                 }
-            }
+//            }
         }
     }
 

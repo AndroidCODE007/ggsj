@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
@@ -13,14 +14,31 @@ import com.channelsoft.android.ggsj.R;
 import com.channelsoft.android.ggsj.base.GlobalApplication;
 import com.channelsoft.android.ggsj.base.activity.BaseActivity;
 import com.channelsoft.android.ggsj.databinding.ActivityMainBinding;
+import com.channelsoft.android.ggsj.push.pushmodel.IRegistMsgCentrePushModel;
+import com.channelsoft.android.ggsj.push.pushmodel.RegistMsgCentrePushModelImpl;
+import com.channelsoft.android.ggsj.utils.LogUtils;
+import com.channelsoft.android.ggsj.utils.LoginManager;
+import com.channelsoft.android.ggsj.utils.VersionCodeUtil;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 /**
  * 首页
  * Created by dengquan on 16-4-7.
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener,RegistMsgCentrePushModelImpl.OnRegistPush{
     private ActivityMainBinding binding;
     private ActionBarDrawerToggle mToggle;
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private IRegistMsgCentrePushModel model;
+    private String deviceOsVersion;
+    private String appVersion;
+    private String deviceModel;
+    private String alias;
+    private String userAccount;
+    private String osType;
+    private String regId;
+
     public static Intent newIntent(Context context){
         Intent intent = new Intent(context,MainActivity.class);
         return intent;
@@ -35,7 +53,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             GlobalApplication.instance.registToMiPush();
         }
 
+        registToMsgCentre();
         initToolBarAndDrawer();
+    }
+
+    private void registToMsgCentre() {
+        LoginManager.setUserAccount(LoginManager.getEntId());
+
+        deviceModel = Build.MODEL;
+        deviceOsVersion = Build.VERSION.RELEASE;
+        appVersion = VersionCodeUtil.getCurrentName();
+        alias = LoginManager.getDeviceId();
+        userAccount = LoginManager.getEntId();
+        osType = "1";
+        regId = LoginManager.getRegId();
+
+        LogUtils.i(TAG, "    deviceOsVersion = " + deviceOsVersion
+                + "    deviceModel = " + deviceModel + "     appVersion = "
+                + appVersion + "    alias = " + alias + "    userAccount = " + userAccount
+                + "    osType = " + osType);
+
+        model = new RegistMsgCentrePushModelImpl(this);
+        model.registMsgCentre(regId,deviceOsVersion,deviceModel,appVersion,alias,userAccount,osType);
     }
 
     private void initToolBarAndDrawer() {
@@ -88,5 +127,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 Toast.makeText(MainActivity.this, "点击侧滑栏标题5", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+
+
+    @Override
+    public void onRegistPushSuccess() {
+        LogUtils.i(TAG,"消息中心注册成功");
+    }
+
+    @Override
+    public void onRegistPushError() {
+        LogUtils.i(TAG,"消息中心注册失败");
     }
 }

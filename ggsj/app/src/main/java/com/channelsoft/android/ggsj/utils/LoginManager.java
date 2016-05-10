@@ -1,11 +1,14 @@
 package com.channelsoft.android.ggsj.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.channelsoft.android.ggsj.base.GlobalApplication;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -22,6 +25,14 @@ public class LoginManager
     public static String getToken()
     {
         return  SharedPreferencesUtil.getSharedPreferences().getToken();
+    }
+
+    public static void saveRegId(String regId){
+        SharedPreferencesUtil.getSharedPreferences().saveRegId(regId);
+    }
+
+    public static String getRegId(){
+        return SharedPreferencesUtil.getSharedPreferences().getRegId();
     }
 
 
@@ -89,5 +100,29 @@ public class LoginManager
             deviceId = UUID.randomUUID().toString().replace("-", "");
         }
         return deviceId;
+    }
+
+    /**
+     * 小米中心注册userAccount
+     * 在注册之前注销其他userAccount（预防前一个userAccount为注销成功）
+     */
+    public static void setUserAccount(String entId)
+    {
+        if(TextUtils.isEmpty(entId))
+        {
+            return;
+        }
+        List<String> users = MiPushClient.getAllUserAccount(GlobalApplication.getInstance());
+        if(users != null && users.size() != 0)
+        {
+            for(String userAccount : users)
+            {
+                if(!entId.equals(userAccount))
+                {
+                    MiPushClient.unsetUserAccount(GlobalApplication.getInstance(), userAccount, null);
+                }
+            }
+        }
+        MiPushClient.setUserAccount(GlobalApplication.getInstance(), entId, null);
     }
 }
