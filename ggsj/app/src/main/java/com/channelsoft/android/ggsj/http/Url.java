@@ -44,6 +44,10 @@ public class Url
          */
         public static final String BOSS_LOGIN_HELPDESK = "/ggsj/login.action";
 
+
+
+        public static final String GET_WX_AUTH_URL = BuildConfig.IP +"sdm"+ "/web/wx/authUrl.action";
+
     }
 
     /**

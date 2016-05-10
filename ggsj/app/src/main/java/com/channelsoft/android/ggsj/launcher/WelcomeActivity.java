@@ -11,6 +11,7 @@ import com.channelsoft.android.ggsj.R;
 import com.channelsoft.android.ggsj.databinding.ActivityWelcomeBinding;
 import com.channelsoft.android.ggsj.home.activity.MainActivity;
 import com.channelsoft.android.ggsj.login.activity.BossLoginActivity;
+import com.channelsoft.android.ggsj.login.activity.StafLoginActivity;
 import com.channelsoft.android.ggsj.utils.LoginManager;
 import com.channelsoft.android.ggsj.utils.VersionCodeUtil;
 import com.channelsoft.android.ggsj.databinding.*;
@@ -40,7 +41,7 @@ public class WelcomeActivity extends AppCompatActivity
             }
             else
             {
-                startActivity(new Intent(WelcomeActivity.this,BossLoginActivity.class));
+                startActivity(new Intent(WelcomeActivity.this,StafLoginActivity.class));
             }
         }
     }
