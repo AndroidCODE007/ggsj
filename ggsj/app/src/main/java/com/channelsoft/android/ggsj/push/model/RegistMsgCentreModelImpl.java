@@ -11,6 +11,7 @@ import com.channelsoft.android.ggsj.http.Http;
 import com.channelsoft.android.ggsj.http.Url;
 import com.channelsoft.android.ggsj.push.listener.OnRegistMsgCentreListener;
 import com.channelsoft.android.ggsj.utils.LogUtils;
+import com.channelsoft.android.ggsj.utils.LoginManager;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -30,10 +31,10 @@ public class RegistMsgCentreModelImpl implements IRegistMsgCentreModel {
     }
 
     @Override
-    public void registMsgCentre(final String regId, final String deviceOsVersion, final String deviceModel, final String appVersion, final String phoneNumber) {
+    public void registMsgCentre(final String regId, final String deviceOsVersion, final String deviceModel, final String appVersion, final String alias,final String userAccount,final String osType) {
         StringRequest request = new StringRequest(
                 StringRequest.Method.POST,
-                Url.RegistMsgCentre.REGIST_MSG_CENTRE,
+                LoginManager.getHelpDeskUrl() + Url.RegistMsgCentre.REGIST_MSG_CENTRE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -42,7 +43,7 @@ public class RegistMsgCentreModelImpl implements IRegistMsgCentreModel {
                             Gson gson = new Gson();
                             BaseInfo info = gson.fromJson(s,BaseInfo.class);
                             if(listener != null){
-                                if(info.getReturnCode().equals("0")){
+                                if(info.getReturnCode().equals("00")){
                                     listener.onRegistSuccess();
                                 }else {
                                     listener.onRegistError();
@@ -70,7 +71,9 @@ public class RegistMsgCentreModelImpl implements IRegistMsgCentreModel {
                 map.put("deviceOsVersion", deviceOsVersion);
                 map.put("deviceModel", deviceModel);
                 map.put("appVersion", appVersion);
-                map.put("phoneNumber", phoneNumber);
+                map.put("alias",alias);
+                map.put("userAcount",userAccount);
+                map.put("osType",osType);
 
                 return map;
             }

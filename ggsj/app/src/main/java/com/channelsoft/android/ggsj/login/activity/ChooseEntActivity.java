@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.channelsoft.android.ggsj.R;
+import com.channelsoft.android.ggsj.base.GlobalApplication;
 import com.channelsoft.android.ggsj.base.activity.BaseActivity;
 import com.channelsoft.android.ggsj.databinding.ActivtyChooseEntBinding;
 import com.channelsoft.android.ggsj.home.activity.MainActivity;
@@ -14,6 +15,7 @@ import com.channelsoft.android.ggsj.login.adapter.ChooseEntAdapter;
 import com.channelsoft.android.ggsj.login.bean.CompanyData;
 import com.channelsoft.android.ggsj.login.viewmodel.ILoginViewModel;
 import com.channelsoft.android.ggsj.login.viewmodel.LoginViewModel;
+import com.channelsoft.android.ggsj.order.model.GetOrderListModelImpl;
 import com.channelsoft.android.ggsj.utils.LogUtils;
 import com.channelsoft.android.ggsj.utils.LoginManager;
 
@@ -75,6 +77,8 @@ public class ChooseEntActivity extends BaseActivity implements ChooseEntAdapter.
     public void onSuccess()
     {
         startActivity(new Intent(ChooseEntActivity.this, MainActivity.class));
+        GlobalApplication.instance.registToMiPush();
+        GlobalApplication.instance.isRegistToMiPush = true;
     }
 
     @Override

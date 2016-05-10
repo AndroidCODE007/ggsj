@@ -39,7 +39,7 @@ public class LoginModel implements ILoginModel
     public void login(final String entId)
     {
         StringRequest request = new StringRequest(Request.Method.POST,
-                LoginManager.getHelpDesjUrl() + Url.Login.BOSS_LOGIN_HELPDESK,
+                LoginManager.getHelpDeskUrl() + Url.Login.BOSS_LOGIN_HELPDESK,
                 new Response.Listener<String>()
                 {
                     @Override

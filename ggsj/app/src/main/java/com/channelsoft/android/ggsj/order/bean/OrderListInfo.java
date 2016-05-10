@@ -2,6 +2,7 @@ package com.channelsoft.android.ggsj.order.bean;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.Observable;
 import android.support.annotation.BinderThread;
 
 import com.channelsoft.android.ggsj.BR;

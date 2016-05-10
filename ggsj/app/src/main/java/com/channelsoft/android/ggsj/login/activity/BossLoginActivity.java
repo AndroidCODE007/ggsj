@@ -187,7 +187,6 @@ public class BossLoginActivity extends BaseActivity implements
     @Override
     public void onLoginSuccess(CompanyData info) {
         LoginManager.savePhoneNumber(phoneNumber);
-        GlobalApplication.instance.registToMiPush();
         startActivity(ChooseEntActivity.newIntent(BossLoginActivity.this,info));
     }
 

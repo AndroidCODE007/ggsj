@@ -22,6 +22,7 @@ public class SharedPreferencesUtil
     private static final String VERSION_NAME = "version_name";
     private static final String HELP_DESK_URL = "help_desk_url";
     private static final String PHONE_NUMBER = "phone_number";
+    private static final String ENT_ID = "ent_id";
     private SharedPreferencesUtil()
     {
 
@@ -130,6 +131,7 @@ public class SharedPreferencesUtil
         return  sharedPreferences.getInt(VERSION_CODE,0);
     }
 
+
     public void saveHelpDeskUrl(String url)
     {
         if(sharedPreferences == null)
@@ -149,4 +151,5 @@ public class SharedPreferencesUtil
         }
         return  sharedPreferences.getString(HELP_DESK_URL,"");
     }
+
 }

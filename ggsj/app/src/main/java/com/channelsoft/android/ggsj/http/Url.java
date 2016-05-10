@@ -55,10 +55,10 @@ public class Url
     }
 
     /**
-     * 注册消息中心
+     *消息中心注册咕咕商家信息接口
      */
     public class RegistMsgCentre {
-        public static final String REGIST_MSG_CENTRE = "http://test.qncloud.cn/channelpush/register.action";
+        public static final String REGIST_MSG_CENTRE = "/csnc/registerGGSJ.action";
     }
 
     /**

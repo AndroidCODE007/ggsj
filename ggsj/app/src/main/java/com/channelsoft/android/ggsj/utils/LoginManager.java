@@ -1,6 +1,12 @@
 package com.channelsoft.android.ggsj.utils;
 
+import android.content.Context;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+
+import com.channelsoft.android.ggsj.base.GlobalApplication;
+
+import java.util.UUID;
 
 /**
  * 控制用户登陆信息的类
@@ -45,7 +51,7 @@ public class LoginManager
         SharedPreferencesUtil.getSharedPreferences().saveHelpDeskUrl(helpDeskUrl);
     }
 
-    public static String getHelpDesjUrl()
+    public static String getHelpDeskUrl()
     {
         return  SharedPreferencesUtil.getSharedPreferences().getHelpDeskUrl();
 
@@ -70,5 +76,18 @@ public class LoginManager
         {
             return true;
         }
+    }
+
+    /**
+     * 获取IMEI号，如果获取不到IMEI号，就拿uuid代替
+     * @return
+     */
+    public static String getDeviceId(){
+        TelephonyManager telephonyManager = (TelephonyManager) GlobalApplication.getInstance().getSystemService(Context.TELEPHONY_SERVICE);
+        String deviceId = telephonyManager.getDeviceId();
+        if(TextUtils.isEmpty(deviceId)){
+            deviceId = UUID.randomUUID().toString().replace("-", "");
+        }
+        return deviceId;
     }
 }

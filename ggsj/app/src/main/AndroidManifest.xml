@@ -68,8 +68,12 @@
         <!--首页-->
         <activity
             android:name=".home.activity.MainActivity"
-            android:theme="@style/BaseAppTheme">
-
+            android:theme="@style/BaseAppTheme"
+            >
+            <intent-filter>
+                <action android:name="com.activity.MainActivity"/>
+                <category android:name="ANDROID.INTENT.CATEGORY.DEFAULT"/>
+            </intent-filter>
         </activity>
         <!--引导页面-->
 
@@ -120,8 +124,10 @@
         <!--更新的service-->
         <service
             android:name=".update.UpdateService">
-
         </service>
+
+        <service android:name=".push.service.PushNotifyService"
+            android:exported="false"/>
     </application>
 
 </manifest>
