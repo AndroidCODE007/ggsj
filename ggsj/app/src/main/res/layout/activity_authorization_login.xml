@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="咕咕商家申请登录"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:textSize="24sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/cardview_dark_background"
+            android:layout_marginTop="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择要授权的功能"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_horizontal">
+            <CheckBox
+                android:id="@+id/cb_check_ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="验券"
+                android:textSize="18sp"
+                />
+            <CheckBox
+                android:id="@+id/cb_return_ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="返券"
+                android:textSize="18sp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                />
+            <CheckBox
+                android:id="@+id/cb_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订单"
+                android:textSize="18sp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="14dp"
+                android:text="为了方便管理，请给设备命名"
+                android:textColor="#909090"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/et_device_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="#00000000"
+                android:singleLine="true"
+                android:textColor="#1f1f1f"
+                android:textSize="19sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_authorization"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="20dp"
+            android:background="#32b16c"
+            android:text="授权登录"
+            android:textColor="@color/color_white"
+            android:textSize="16sp" />
+    </LinearLayout>
+</layout>
+

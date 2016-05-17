@@ -179,18 +179,18 @@ public class PushMsgReceiver extends PushMessageReceiver{
             ,AuthMiMsg msg, int notifyType, String startActivityAction) {
         if(!TextUtils.isEmpty(LoginManager.getSessionId()) && !TextUtils.isEmpty(msg.getOrderId())){//有Id已登录
             LogUtils.i(TAG,"有ID已登录");
-//            if(!ScreenUtils.isApplicationBroughtToBackground(GlobalApplication.getInstance())
-//                    && ScreenUtils.isNotLockAndNotCloseScreen(context)){//在前台、未锁屏、未息屏，弹窗
-//                LogUtils.i(TAG,"makeDialog");
-//                makeDialog(context, dialogTitle, dialogContent, msg);
-//            }else {
+            if(!ScreenUtils.isApplicationBroughtToBackground(GlobalApplication.getInstance())
+                    && ScreenUtils.isNotLockAndNotCloseScreen(context)){//在前台、未锁屏、未息屏，弹窗
+                LogUtils.i(TAG,"makeDialog");
+                makeDialog(context, dialogTitle, dialogContent, msg);
+            }else {
                 LogUtils.i(TAG,"else");
                 //在后台、或锁屏、或息屏，弹通知栏
                 if (!TextUtils.isEmpty(msg.getNotifyTitle())) {
                     LogUtils.i(TAG,"makeNotification");
                     makeNotification(context, msg.getNotifyTitle(), msg.getOrderId(), notifyType, startActivityAction);
                 }
-//            }
+            }
         }
     }
 

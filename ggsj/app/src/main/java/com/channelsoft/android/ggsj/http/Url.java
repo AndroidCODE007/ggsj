@@ -44,6 +44,11 @@ public class Url
          */
         public static final String BOSS_LOGIN_HELPDESK = "/ggsj/login.action";
 
+        /**
+         * 老板设备扫码获取设备信息
+         */
+        public static final String GET_AUTH_DEVICE_INFO = "/ggsj/authDeviceInfo.action";
+
     }
 
     /**
