@@ -71,7 +71,6 @@ public class OrderFragment extends BaseFragment implements
     private void initView()
     {
         binding.dynamicView.setDataView(LayoutInflater.from(getActivity()).inflate(R.layout.layout_order_data, binding.dynamicView,false));
-        binding.dynamicView.showLoadingLayout();
         orderList = new ArrayList<>();
 
         binding.swipeOrder.setColorSchemeColors(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
@@ -87,6 +86,9 @@ public class OrderFragment extends BaseFragment implements
         });
     }
 
+    /**
+     * 加载更多正在加载中 。。。。。。
+     */
     @Override
     public void onLoading()
     {
@@ -95,11 +97,7 @@ public class OrderFragment extends BaseFragment implements
         getOrderListViewModel.getOrderList("0", page);
     }
 
-    @Override
-    public void onComplete()
-    {
 
-    }
 
     @Override
     public void onMeasureComplete()
@@ -107,10 +105,11 @@ public class OrderFragment extends BaseFragment implements
         recyclerView.setIsFullScreen(manager);
     }
 
+
     @Override
     public void onGetting()
     {
-
+        binding.dynamicView.showLoadingLayout();
     }
 
     @Override
@@ -120,15 +119,33 @@ public class OrderFragment extends BaseFragment implements
         page =  result.getPage();
         if (isLoadMoreOrRefresh)
         {
-            orderList.clear();
-            orderList = result.getOrderList();
-            adapter.addHeaderData(orderList);
+            setHeaderLoad(result);
         }
         else
         {
-            orderList.addAll(result.getOrderList());
-            adapter.addFooterData(orderList);
+            setFooterLoad(result);
         }
+    }
+
+    /**
+     * 设置底部加载完成
+     * @param result
+     */
+    private void setFooterLoad(OrderListResult result)
+    {
+        recyclerView.setIsLoading();
+        adapter.addFooterData(result.getOrderList());
+    }
+
+    /**
+     * 设置头部加载 布局完成
+     * @param result
+     */
+    private void setHeaderLoad(OrderListResult result)
+    {
+        orderList.clear();
+        orderList = result.getOrderList();
+        adapter.addHeaderData(orderList);
     }
 
     private void initAdapter()

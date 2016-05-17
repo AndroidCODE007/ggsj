@@ -45,8 +45,16 @@ public class Url
         public static final String BOSS_LOGIN_HELPDESK = "/ggsj/login.action";
 
 
-
+        /**
+         * 获取微信授权登陆Url
+         */
         public static final String GET_WX_AUTH_URL = BuildConfig.IP +"sdm"+ "/web/wx/authUrl.action";
+
+
+        /**
+         * 员工登陆接口
+         */
+        public static final String QR_LOGIN_URL = "/wxLogin/deviceLogin.action";
 
     }
 

@@ -1,4 +1,4 @@
-package com.channelsoft.ggsj.http;
+package com.channelsoft.android.ggsj.http;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;

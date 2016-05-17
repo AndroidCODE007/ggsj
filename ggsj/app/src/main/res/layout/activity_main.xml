@@ -39,7 +39,7 @@
                     android:id="@+id/drawer_item1"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:text="侧滑栏标题一"
+                    android:text="@string/title_boss_auth"
                     android:textSize="18sp"
                     android:gravity="center" />
                 <View

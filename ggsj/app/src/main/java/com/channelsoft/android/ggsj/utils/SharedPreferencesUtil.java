@@ -23,6 +23,7 @@ public class SharedPreferencesUtil
     private static final String HELP_DESK_URL = "help_desk_url";
     private static final String PHONE_NUMBER = "phone_number";
     private static final String ENT_ID = "ent_id";
+    private static final String REG_ID = "reg_id";
     private SharedPreferencesUtil()
     {
 
@@ -50,6 +51,12 @@ public class SharedPreferencesUtil
     public void savePhoneNumber(String phoneNumber){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(PHONE_NUMBER,phoneNumber);
+        editor.commit();
+    }
+
+    public void saveRegId(String regId){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(REG_ID,regId);
         editor.commit();
     }
 
@@ -109,6 +116,15 @@ public class SharedPreferencesUtil
             sharedPreferences = GlobalApplication.getInstance().getSharedPreferences(TOKEN_MSG, Context.MODE_PRIVATE);
         }
         return sharedPreferences.getString(PHONE_NUMBER, "0");
+    }
+
+    public String getRegId()
+    {
+        if (sharedPreferences == null)
+        {
+            sharedPreferences = GlobalApplication.getInstance().getSharedPreferences(TOKEN_MSG, Context.MODE_PRIVATE);
+        }
+        return sharedPreferences.getString(REG_ID, "0");
     }
 
     public void saveVersionCode(int code)

@@ -1,9 +1,13 @@
 package com.channelsoft.android.ggsj.push.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by chenyg on 2016/5/5.
  */
-public class AuthMiMsg {
+public class AuthMiMsg implements Parcelable
+{
     private String entId;
 
     private String appNodeUrl;
@@ -163,4 +167,74 @@ public class AuthMiMsg {
     public void setPrintStatus(String printStatus) {
         this.printStatus = printStatus;
     }
+
+    @Override
+    public String toString()
+    {
+        return this.getAppNodeUrl()+"   "+this.getAutoPrintKitchenOrder()+"   "+
+                this.getAutoPrintReceipt()+"   "+this.getBizType()+"  "+this.getCouplet()+"   "
+                +this.getDeviceName()+"   "+this.getEntId()+"  "+this.getFontSize();
+    }
+
+    @Override
+    public int describeContents()
+    {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+        dest.writeString(this.entId);
+        dest.writeString(this.appNodeUrl);
+        dest.writeString(this.bizType);
+        dest.writeString(this.deviceName);
+        dest.writeString(this.returnCouponRight);
+        dest.writeString(this.verifyCouponRight);
+        dest.writeString(this.orderRight);
+        dest.writeString(this.deskSwitchStatus);
+        dest.writeString(this.orderId);
+        dest.writeString(this.notifyTitle);
+        dest.writeString(this.dialogContent);
+        dest.writeString(this.fontSize);
+        dest.writeString(this.couplet);
+        dest.writeString(this.autoPrintKitchenOrder);
+        dest.writeString(this.autoPrintReceipt);
+        dest.writeString(this.printStatus);
+    }
+
+    protected AuthMiMsg(Parcel in)
+    {
+        this.entId = in.readString();
+        this.appNodeUrl = in.readString();
+        this.bizType = in.readString();
+        this.deviceName = in.readString();
+        this.returnCouponRight = in.readString();
+        this.verifyCouponRight = in.readString();
+        this.orderRight = in.readString();
+        this.deskSwitchStatus = in.readString();
+        this.orderId = in.readString();
+        this.notifyTitle = in.readString();
+        this.dialogContent = in.readString();
+        this.fontSize = in.readString();
+        this.couplet = in.readString();
+        this.autoPrintKitchenOrder = in.readString();
+        this.autoPrintReceipt = in.readString();
+        this.printStatus = in.readString();
+    }
+
+    public static final Parcelable.Creator<AuthMiMsg> CREATOR = new Parcelable.Creator<AuthMiMsg>()
+    {
+        @Override
+        public AuthMiMsg createFromParcel(Parcel source)
+        {
+            return new AuthMiMsg(source);
+        }
+
+        @Override
+        public AuthMiMsg[] newArray(int size)
+        {
+            return new AuthMiMsg[size];
+        }
+    };
 }

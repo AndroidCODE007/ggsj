@@ -103,7 +103,8 @@ public class OrderAdapter extends RecyclerView.Adapter
     public void addFooterData(List<OrderListInfo> orderList)
     {
         Toast.makeText(context,"footer data  ",Toast.LENGTH_LONG).show();
-        list = orderList;
+        checkFooterViewStatus(orderList);
+        list.addAll(orderList);
         this.notifyDataSetChanged();
     }
 
@@ -133,10 +134,25 @@ public class OrderAdapter extends RecyclerView.Adapter
 
     class FooterViewHolder extends RecyclerView.ViewHolder
     {
-
         public FooterViewHolder(View itemView)
         {
             super(itemView);
+        }
+    }
+
+    /**
+     * 设置不同状态下面的footerView的状态
+     * @param listInfos
+     */
+    private void checkFooterViewStatus(List<OrderListInfo> listInfos )
+    {
+        if(listInfos == null || listInfos.size() <= 0)
+        {
+            footerView.setViewStatus(LoadFooterView.StatusFooterView.nomore);
+        }
+        else
+        {
+
         }
     }
 }

@@ -4,4 +4,21 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_white">#ffffff</color>
+
+    <!--通知的界面用到的背景颜色-->
+    <color name="notification_title_bg">#FF002833</color>
+    <color name="notification_txt_bg">#dd003c4e</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#00ffff00</color>
+    <color name="transparent_black">#CC002833</color>
+    <color name="more_transparent_black">#ff472f</color>
+    <color name="viewfinder_frame">#2477ab</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="common_green">#32b16c</color>
+    <color name="lightgreen">#99CC33</color>
+    <color name="light_gray">#f4f4f4</color>
+    <color name="dark_than_light_gray">#c4c4c4</color>
+    <color name="white">#ffffff</color>
 </resources>

@@ -31,6 +31,8 @@ public class GlobalApplication extends Application
     {
         super.onCreate();
         instance = this;
+
+        registToMiPush();
     }
 
     public static Context getInstance()
