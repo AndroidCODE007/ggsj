@@ -126,11 +126,33 @@ public final class CaptureActivity extends BaseActivity implements
         if (hasSurface)
         {
             initCamera(surfaceHolder);
-        } else
+        }
+        else
         {
             surfaceHolder.addCallback(this);
             surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         }
+
+        SurfaceHolder.Callback callback = new SurfaceHolder.Callback()
+        {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder)
+            {
+
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
+            {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder)
+            {
+
+            }
+        };
 
         beepManager.updatePrefs();
         ambientLightManager.start(cameraManager);

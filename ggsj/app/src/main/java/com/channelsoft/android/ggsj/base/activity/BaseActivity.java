@@ -30,7 +30,7 @@ public class BaseActivity extends AppCompatActivity
      * Toast方法
      * @param str
      */
-    private void showToast(String str)
+    public void showToast(String str)
     {
         Toast.makeText(this,str,Toast.LENGTH_LONG).show();
     }

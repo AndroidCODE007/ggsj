@@ -55,6 +55,16 @@ public class Url
          * 员工登陆接口
          */
         public static final String QR_LOGIN_URL = "/wxLogin/deviceLogin.action";
+        /**
+         * 老板设备扫码获取设备信息
+         */
+        public static final String GET_AUTH_DEVICE_INFO = "/ggsj/authDeviceInfo.action";
+
+
+        /**
+         * 老板设备授权操作
+         */
+        public static final String AUTH_CONFIRM = "/ggsj/authConfirm.action";
 
     }
 

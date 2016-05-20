@@ -269,14 +269,15 @@ public class PushMsgReceiver extends PushMessageReceiver
 
     /**
      * 向员工登陆发送广播
+     *
      * @param msg
      */
     private void sendBroadToStaffReceiver(AuthMiMsg msg)
     {
         Intent intent = new Intent(StafLoginActivity.STAFF_LOGIN_ACTION);
-        intent.putExtra(AUTHMIMSG,msg);
+        intent.putExtra(AUTHMIMSG, msg);
         GlobalApplication.getInstance().sendBroadcast(intent);
-        LogUtils.i(TAG,"send receiver to staff :"+msg.toString());
+        LogUtils.i(TAG, "send receiver to staff :" + msg.toString());
     }
 
 }

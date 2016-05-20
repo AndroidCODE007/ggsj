@@ -17,6 +17,7 @@ import com.channelsoft.android.ggsj.base.GlobalApplication;
 import com.channelsoft.android.ggsj.base.activity.BaseActivity;
 import com.channelsoft.android.ggsj.databinding.ActivityMainBinding;
 import com.channelsoft.android.ggsj.home.listener.OnScanQrResultListener;
+import com.channelsoft.android.ggsj.login.activity.AuthorizationLoginActivity;
 import com.channelsoft.android.ggsj.login.activity.CaptureActivity;
 import com.channelsoft.android.ggsj.push.pushmodel.IRegistMsgCentrePushModel;
 import com.channelsoft.android.ggsj.push.pushmodel.RegistMsgCentrePushModelImpl;
@@ -30,7 +31,7 @@ import com.xiaomi.mipush.sdk.MiPushClient;
  * Created by dengquan on 16-4-7.
  */
 public class MainActivity extends BaseActivity implements
-        View.OnClickListener, RegistMsgCentrePushModelImpl.OnRegistPush,OnScanQrResultListener
+        View.OnClickListener, RegistMsgCentrePushModelImpl.OnRegistPush, OnScanQrResultListener
 {
     private ActivityMainBinding binding;
     private ActionBarDrawerToggle mToggle;
@@ -87,6 +88,7 @@ public class MainActivity extends BaseActivity implements
         model.registMsgCentre(regId, deviceOsVersion, deviceModel, appVersion, alias, userAccount, osType);
     }
 
+
     private void initToolBarAndDrawer()
     {
         binding.mainToolbar.setTitle("咕咕商家");//设置标题
@@ -129,7 +131,7 @@ public class MainActivity extends BaseActivity implements
         {
             case R.id.drawer_item1:
                 Toast.makeText(MainActivity.this, "扫码授权", Toast.LENGTH_SHORT).show();
-                startActivity(CaptureActivity.newIntent(MainActivity.this,this));
+                startActivity(CaptureActivity.newIntent(MainActivity.this, this));
                 break;
             case R.id.drawer_item2:
                 Toast.makeText(MainActivity.this, "点击侧滑栏标题2", Toast.LENGTH_SHORT).show();
@@ -151,40 +153,36 @@ public class MainActivity extends BaseActivity implements
     {
         try
         {
+            result = result.substring(result.indexOf("?") + 1, result.length());
+            result = result.substring(result.indexOf("?") + 1, result.length());
+            String[] strs = result.split("&");
+            String authId = null;
+            if (strs[0].startsWith("authId="))
             {
-                result = result.substring(result.indexOf("?") + 1, result.length());
-                result = result.substring(result.indexOf("?") + 1, result.length());
-                String[] strs = result.split("&");
-                String authId = null;
-                if (strs[0].startsWith("authId="))
-                {
-                    authId = strs[0].substring(7);
-                }
-                String regId = null;
-                if (strs[1].startsWith("regId="))
-                    regId = strs[1].substring(6);
-                Log.v("", "解析结果--->url:" + result + "   authId:" + authId + "  regId:" + regId);
-                if (result.equals("") || TextUtils.isEmpty(authId) || TextUtils.isEmpty(regId))
-                {
-                    Log.v("", "不认识的二维码--->url:" + result + "   authId:" + authId + "  regId:" + regId);
-//                    resultIntent.putExtra("title", "扫码授权");
-//                    //resultIntent.setClass(this, ScanCodeFailActivity.class);
-//                    startActivity(resultIntent);
-                    return;
-                }
-//                resultIntent.setClass(GlobalApplication.getInstance(), AuthorizationLoginActivity.class);
-//                resultIntent.putExtra("authId", authId);
-//                resultIntent.putExtra("regId", regId);
-//                startActivity(resultIntent);
+                authId = strs[0].substring(7);
             }
-        }
-        catch (Exception e)
+            String regId = null;
+            if (strs[1].startsWith("regId="))
+                regId = strs[1].substring(6);
+            LogUtils.i(TAG, "解析结果--->url:" + result + "   authId:" + authId + "  regId:" + regId);
+            if (result.equals("") || TextUtils.isEmpty(authId) || TextUtils.isEmpty(regId))
+            {
+                LogUtils.i(TAG, "不认识的二维码--->url:" + result + "   authId:" + authId + "  regId:" + regId);
+                showToast("二维码错误，请重新扫描");
+                return;
+            }
+            Intent intent = new Intent();
+            intent.setClass(GlobalApplication.getInstance(), AuthorizationLoginActivity.class);
+            intent.putExtra("authId", authId);
+            intent.putExtra("regId", regId);
+            startActivity(intent);
+        } catch (Exception e)
         {
-            LogUtils.v("", "url 扫描失败  " + e.getMessage() + e.getLocalizedMessage());
-//            resultIntent.setClass(this, ScanCodeFailActivity.class);
-//            startActivity(resultIntent);
+            LogUtils.i(TAG, "url 扫描失败  " + e.getMessage() + e.getLocalizedMessage());
+            showToast("二维码错误，请重新扫描");
         }
     }
+
 
     @Override
     public void onRegistPushSuccess()
